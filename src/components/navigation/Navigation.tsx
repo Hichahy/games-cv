@@ -7,7 +7,7 @@ const Navigation = () => {
   return (
     <>
       <Navbar className="main-nav" collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand href="/home">🦐 Sajgonka</Navbar.Brand>
+        <Navbar.Brand href="/home">🦐 SAJGONKA</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
