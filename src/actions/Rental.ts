@@ -1,16 +1,16 @@
-import { LOAD_GAME, TOGGLE_MODAL, SAVE_INFO_ORDERS, MOBILE_MODE } from '../common/types'
-import { games } from '../mocks/games'
+import { TOGGLE_MODAL, SAVE_INFO_ORDERS, MOBILE_MODE } from '../common/types'
+// import { games } from '../mocks/games'
 
-export const loadGames = () => (dispatch: any) => {
-  try {
-    dispatch({
-      type: LOAD_GAME,
-      payload: games
-    })
-  } catch (err) {
-    console.log('err', err)
-  }
-}
+// export const loadGames = () => (dispatch: any) => {
+//   try {
+//     dispatch({
+//       type: LOAD_GAME,
+//       // payload: games
+//     })
+//   } catch (err) {
+//     console.log('err', err)
+//   }
+// }
 
 export const toggleOpenModal =
   (modal: boolean, id: number) => (dispatch: any) => {

@@ -28,10 +28,9 @@
     "import/extensions": ["error", "ignorePackages", { "ts": "never", "tsx": "never", "jsx": "never" }],
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
-    "@typescript-eslint/explicit-function-return-type": ["error", { "allowExpressions": true }],
     "max-len": ["warn", { "code": 120 }],
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "off",
+    "react-hooks/exhaustive-deps": "off",
     "import/prefer-default-export": "off",
     "react/prop-types": "off",
     "react/jsx-curly-brace-presence": "off",
@@ -59,4 +58,5 @@
     "import/no-extraneous-dependencies": "off",
     "react/require-default-props": "off"
     }
-}
+    }
+
