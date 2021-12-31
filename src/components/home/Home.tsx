@@ -14,8 +14,8 @@ const Home = ({ mobileMode }: IProps) => {
           className="d-flex w-100"
           src={
             mobileMode
-              ? '/images/home/homeMobile1.jpg'
-              : '/images/home/home1.jpg'
+              ? '/image/home/homeMobile1.jpg'
+              : '/image/home/home1.jpg'
           }
           alt="First slide"
         />
@@ -30,8 +30,8 @@ const Home = ({ mobileMode }: IProps) => {
           className="d-block w-100"
           src={
             mobileMode
-              ? '/images/home/homeMobile2.jpg'
-              : '/images/home/home2.jpg'
+              ? '/image/home/homeMobile2.jpg'
+              : '/image/home/home2.jpg'
           }
           alt="Second slide"
         />
@@ -45,8 +45,8 @@ const Home = ({ mobileMode }: IProps) => {
           className="d-block w-100"
           src={
             mobileMode
-              ? '/images/home/homeMobile3.jpg'
-              : '/images/home/home3.jpg'
+              ? '/image/home/homeMobile3.jpg'
+              : '/image/home/home3.jpg'
           }
           alt="Third slide"
         />
