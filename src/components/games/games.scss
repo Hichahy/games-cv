@@ -8,7 +8,12 @@
   }
 }
 
-.container-game {
+.loading-box {
+  height: 93vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .game-box {

@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import typeToReducer from 'type-to-reducer'
 import { LOAD_GAME, TOGGLE_MODAL, SAVE_INFO_ORDERS, MOBILE_MODE } from '../common/types'
 
