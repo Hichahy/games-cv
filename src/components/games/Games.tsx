@@ -1,30 +1,44 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import './games.scss'
+import React, { useEffect } from 'react'
+import { Container, Row, Card, Spinner } from 'react-bootstrap'
+import { IGames } from '../../types/types'
 
-const Games = () => {
-  const [games, setGames] = useState([])
+interface IProps {
+  games: IGames[];
 
+  loadGames: () => void;
+}
+
+const Games = ({ games, loadGames }: IProps) => {
   useEffect(() => {
-    axios
-      .get(
-        'https://games-rental-83316-default-rtdb.europe-west1.firebasedatabase.app/games.json'
-      )
-      .then((res) => {
-        console.log(res)
-        setGames(res.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [])
+    loadGames()
+  }, [loadGames])
+
+  if (games.length < 1) {
+    return (
+      <div className="loading-box">
+        <Spinner animation="border" style={{ height: '7rem', width: '7rem' }} role="status" />
+        <span>Loading</span>
+      </div>
+    )
+  }
 
   return (
-    <div>
-      <p style={{ color: 'white' }}>yoo</p>
-      {games.map((g: {id: number, name: string}) => (
-        <p style={{ color: 'white' }} key={g.id}>{g.name}</p>
-      ))}
-    </div>
+    <Container fluid className="container-game">
+      <Row className="game-box">
+        {games.map(
+          (game) => (
+            <Card key={game.id} className="cart-game">
+              <Card.Img className="img-game" variant="top" src={game.image} />
+              <Card.Body>
+                <Card.Title>{game.name}</Card.Title>
+                <Card.Text>{game.description}</Card.Text>
+              </Card.Body>
+            </Card>
+          )
+        )}
+      </Row>
+    </Container>
   )
 }
 
