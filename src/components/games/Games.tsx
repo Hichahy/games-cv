@@ -1,6 +1,7 @@
 import './games.scss'
 import React, { useEffect } from 'react'
 import { Container, Row, Card, Spinner } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { IGames } from '../../types/types'
 
 interface IProps {
@@ -17,8 +18,12 @@ const Games = ({ games, loadGames }: IProps) => {
   if (games.length < 1) {
     return (
       <div className="loading-box">
-        <Spinner animation="border" style={{ height: '7rem', width: '7rem' }} role="status" />
-        <span>Loading</span>
+        <Spinner
+          animation="border"
+          style={{ color: 'white', height: '7rem', width: '7rem' }}
+          role="status"
+        />
+        <span style={{ color: 'white' }}>Loading</span>
       </div>
     )
   }
@@ -26,17 +31,17 @@ const Games = ({ games, loadGames }: IProps) => {
   return (
     <Container fluid className="container-game">
       <Row className="game-box">
-        {games.map(
-          (game) => (
-            <Card key={game.id} className="cart-game">
+        {games.map((game) => (
+          <Card key={game.id} className="cart-game">
+            <Link to={`/game/${game.id}`}>
               <Card.Img className="img-game" variant="top" src={game.image} />
-              <Card.Body>
-                <Card.Title>{game.name}</Card.Title>
-                <Card.Text>{game.description}</Card.Text>
-              </Card.Body>
-            </Card>
-          )
-        )}
+            </Link>
+            <Card.Body>
+              <Card.Title>{game.name}</Card.Title>
+              <Card.Text>{game.description}</Card.Text>
+            </Card.Body>
+          </Card>
+        ))}
       </Row>
     </Container>
   )
