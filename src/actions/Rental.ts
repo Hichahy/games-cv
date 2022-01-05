@@ -7,29 +7,6 @@ import {
 } from '../common/types'
 import axios from 'axios'
 
-// export const loadGames = () => (dispatch: any, getState: any) => {
-//   const games = getState().rental.games
-//   axios
-//     .get(
-//       'https://games-rental-83316-default-rtdb.europe-west1.firebasedatabase.app/games.json'
-//     )
-//     .then((res) => {
-//       console.log(res)
-//       games = res.data
-//     })
-//     .catch((err) => {
-//       console.log(err)
-//     })
-//   try {
-//     dispatch({
-//       type: LOAD_GAME,
-//       payload: { games }
-//     })
-//   } catch (err) {
-//     console.log('err', err)
-//   }
-// }
-
 export const loadGames = () => async (dispatch: any) => {
   try {
     const res = await axios.get(

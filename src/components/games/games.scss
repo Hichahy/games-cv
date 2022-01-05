@@ -26,11 +26,11 @@
   width: 20rem;
   padding: 0;
   margin: 10px;
-  cursor: pointer;
   animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 .img-game {
   width: 100%;
   height: 300px;
+  cursor: pointer;
 }

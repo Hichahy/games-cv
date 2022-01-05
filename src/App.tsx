@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 import './App.scss'
 import React, { useEffect, useState } from 'react'
 import { Container, Row } from 'react-bootstrap'
@@ -6,6 +7,7 @@ import { connect } from 'react-redux'
 import Home from './components/home'
 import Navigation from './components/navigation'
 import Games from './components/games'
+import GameCart from './components/gameCart'
 import { IStore } from './types/IStore'
 import { toggleMobileMode } from './actions/Rental'
 
@@ -33,6 +35,7 @@ const App = ({ toggleMobileMode }: IProps) => {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/games" element={<Games />} />
+          <Route path="/game/:id" element={<GameCart />} />
         </Routes>
       </Row>
     </Container>
