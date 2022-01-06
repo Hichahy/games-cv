@@ -12,6 +12,7 @@ import {
 import { useParams } from 'react-router-dom'
 import { IGames } from '../../types/types'
 import { LinkContainer } from 'react-router-bootstrap'
+import { v4 as uuidv4 } from 'uuid'
 
 interface IProps {
   games: IGames[];
@@ -99,9 +100,11 @@ const GameCart = ({ games, mobileMode, loadGames }: IProps) => {
           </div>
           <div>
             <h4>Gatunek</h4>
-            <Badge pill bg="warning" text="dark">
-              {game?.type}
+          {game?.type.map(i =>
+            <Badge key={uuidv4()} pill bg="warning" text="dark">
+              {i}
             </Badge>
+          )}
           </div>
         </div>
       </section>
@@ -144,9 +147,9 @@ const GameCart = ({ games, mobileMode, loadGames }: IProps) => {
         <section className="reckoning">
         <div>
         <i className="bi bi-cash-coin"></i>
-        <span>{game?.price} ¥ per day</span>
+        <span>{game?.price} ¥ za dzień</span>
         </div>
-        <Button variant="warning">rezerve now!</Button>{' '}
+        <Button variant="warning">rezerwuj teraz!</Button>{' '}
         </section>
     </Container>
   )

@@ -8,6 +8,10 @@
   }
 }
 
+.game-container {
+  margin: 30px 0;
+} 
+
 .loading-box {
   height: 93vh;
   display: flex;
@@ -17,7 +21,7 @@
 }
 
 .game-box {
-  margin: 10px 0;
+  margin: 30px 0;
   display: flex;
   justify-content: center;
 }

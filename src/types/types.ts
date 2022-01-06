@@ -4,8 +4,8 @@ export interface IGames {
   image: string;
   description: string;
   availability: boolean;
-  type: string;
-  platform: string;
+  platform: string[];
+  type: string[];
   screenShot1: string;
   screenShot2: string;
   screenShot3: string;

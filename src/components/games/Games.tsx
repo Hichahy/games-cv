@@ -3,14 +3,15 @@ import React, { useEffect } from 'react'
 import { Container, Row, Card, Spinner } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { IGames } from '../../types/types'
+import Filters from '../filters'
 
 interface IProps {
   games: IGames[];
-
+  filteredItems:IGames[];
   loadGames: () => void;
 }
 
-const Games = ({ games, loadGames }: IProps) => {
+const Games = ({ games, filteredItems, loadGames }: IProps) => {
   useEffect(() => {
     loadGames()
   }, [loadGames])
@@ -29,21 +30,22 @@ const Games = ({ games, loadGames }: IProps) => {
   }
 
   return (
-    <Container fluid className="container-game">
-      <Row className="game-box">
-        {games.map((game) => (
-          <Card key={game.id} className="cart-game">
-            <Link to={`/game/${game.id}`}>
-              <Card.Img className="img-game" variant="top" src={game.image} />
-            </Link>
-            <Card.Body>
-              <Card.Title>{game.name}</Card.Title>
-              <Card.Text>{game.description}</Card.Text>
-            </Card.Body>
-          </Card>
-        ))}
-      </Row>
-    </Container>
+      <Container fluid className="game-container">
+      <Filters />
+        <Row className="game-box">
+          {filteredItems.map((game) => (
+            <Card key={game.id} className="cart-game">
+              <Link to={`/game/${game.id}`}>
+                <Card.Img className="img-game" variant="top" src={game.image} />
+              </Link>
+              <Card.Body>
+                <Card.Title>{game.name}</Card.Title>
+                <Card.Text>{game.description}</Card.Text>
+              </Card.Body>
+            </Card>
+          ))}
+        </Row>
+      </Container>
   )
 }
 
