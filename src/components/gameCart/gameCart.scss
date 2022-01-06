@@ -99,7 +99,8 @@
 }
 
 .reckoning {
-  padding: 100px 0;
+  width: 100%;
+  margin: 100px 0;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -119,6 +120,7 @@
   div {
     width: 100%;
     display: flex;
+    margin: 0 0 15px;
     justify-content: center;
   }
 
@@ -184,22 +186,32 @@
       height: 50vw;
     }
   }
-}
 
+  .reckoning {
+    i {
+      font-size: 30px;
+    }
+
+    span {
+      font-size: 30px;
+    }
+
+    button {
+      width: 13rem;
+    }
+  }
+}
 
 @keyframes puff-in-center {
   0% {
-    -webkit-transform: scale(2);
     transform: scale(2);
-    -webkit-filter: blur(4px);
     filter: blur(4px);
     opacity: 0;
   }
+
   100% {
-    -webkit-transform: scale(1);
     transform: scale(1);
-    -webkit-filter: blur(0px);
-    filter: blur(0px);
+    filter: blur(0);
     opacity: 1;
   }
 }
@@ -208,6 +220,7 @@
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }

@@ -1,0 +1,31 @@
+.filter-container {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+
+  input {
+    width: auto;
+  }
+
+  select {
+    margin-left: 10px;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .filter-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    input {
+      margin-bottom: 5px;
+    }
+
+    select {
+      margin: 5px 0;
+      height: 40px;
+    }
+  }
+}

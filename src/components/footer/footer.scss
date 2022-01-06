@@ -1,0 +1,39 @@
+.footer {
+  background-color: #343a40;
+  padding: 100px 50px;
+  margin: 0;
+  display: flex;
+  max-width: 100%;
+  position: absolute;
+  right: 0;
+  color: white;
+  justify-content: center;
+  align-items: flex-start;
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.foot-box {
+  margin: 0 30px;
+  width: 25%;
+
+  h2 {
+    border-bottom: 1px white solid;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .footer {
+    flex-direction: column;
+    height: auto;
+    padding: 50px 20px;
+  }
+
+  .foot-box {
+    margin: 30px 0;
+    width: 100%;
+  }
+}
