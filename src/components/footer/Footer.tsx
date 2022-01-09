@@ -5,12 +5,9 @@ import { Container, Row, Col } from 'react-bootstrap'
 const Footer = () => {
   return (
     <Container className="footer">
-      <Row>
-        <a href="/home">🦐</a>
-      </Row>
       <Row className="foot-box">
         <Col>
-          <h2>O nas</h2>
+          <h2>O nas 🦐</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
             eligendi iusto quae est in natus necessitatibus quos perspiciatis

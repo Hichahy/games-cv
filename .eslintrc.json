@@ -20,11 +20,13 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "import/no-cycle": 0,
+    "semi": 0,
+    "import/no-cycle": 0,
     "no-param-reassign": 0,
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+    "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
     "max-len": ["warn", { "code": 120 }],
     "react-hooks/rules-of-hooks": "off",

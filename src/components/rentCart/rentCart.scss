@@ -1,0 +1,51 @@
+.rent-container {
+  min-height: 92vh;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-box {
+  height: 80vh;
+  width: 130vh;
+  padding: 0;
+  margin: 50px 0 100px;
+  box-shadow: rgba(255, 0, 255, 0.4) 0 30px 90px;
+}
+
+.form-card {
+  width: 50vh;
+  height: 80vh;
+  background: black;
+  color: white;
+  border-radius: 0;
+  border: none;
+  padding: 0;
+
+  i {
+    color: grey;
+    font-size: 50px;
+    margin-right: 20px;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.form-list {
+  background: black;
+  color: white;
+  padding: 0;
+}
+
+.input-box {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+}

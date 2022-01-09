@@ -12,11 +12,21 @@ export interface IGames {
   price: number;
 }
 
-export interface IOrder {
+export interface IOrders {
   name: string,
   surname: string,
   adress: string,
-  Local: string | number,
+  email: string | number,
+  date: number | string,
+  age: string | number,
+  idGame: string | number
+}
+
+export interface IErrors {
+  name: string,
+  surname: string,
+  adress: string,
+  email: string | number,
   date: number | string,
   age: string | number,
   idGame: string | number
