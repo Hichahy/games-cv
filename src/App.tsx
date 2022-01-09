@@ -10,7 +10,8 @@ import Games from './components/games'
 import GameCart from './components/gameCart'
 import { IStore } from './types/IStore'
 import { toggleMobileMode } from './actions/Rental'
-import Footer from './components/footer/Footer'
+import Footer from './components/footer'
+import RentCart from './components/rentCart'
 
 interface IProps {
   toggleMobileMode: (mobileMode: boolean) => void;
@@ -37,6 +38,7 @@ const App = ({ toggleMobileMode }: IProps) => {
           <Route path="/home" element={<Home />} />
           <Route path="/games" element={<Games />} />
           <Route path="/game/:id" element={<GameCart />} />
+          <Route path="/rent/:id" element={<RentCart />} />
         </Routes>
       </Row>
       <Footer />

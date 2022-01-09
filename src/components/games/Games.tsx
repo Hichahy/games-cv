@@ -7,11 +7,13 @@ import Filters from '../filters'
 
 interface IProps {
   games: IGames[];
+  letters: string;
+  phrase: string;
   filteredItems:IGames[];
   loadGames: () => void;
 }
 
-const Games = ({ games, filteredItems, loadGames }: IProps) => {
+const Games = ({ games, filteredItems, loadGames, phrase }: IProps) => {
   useEffect(() => {
     loadGames()
   }, [loadGames])
@@ -32,9 +34,14 @@ const Games = ({ games, filteredItems, loadGames }: IProps) => {
   return (
       <Container fluid className="game-container">
       <Filters />
+      {filteredItems.length < 1 ?
+      <div className="not-dounf-div" >
+      <p className="p-not-found">Nie znalazłem gry {phrase} </p>
+      </div>
+        :
         <Row className="game-box">
           {filteredItems.map((game) => (
-            <Card key={game.id} className="cart-game">
+           <Card key={game.id} className="cart-game">
               <Link to={`/game/${game.id}`}>
                 <Card.Img className="img-game" variant="top" src={game.image} />
               </Link>
@@ -45,6 +52,7 @@ const Games = ({ games, filteredItems, loadGames }: IProps) => {
             </Card>
           ))}
         </Row>
+         }
       </Container>
   )
 }

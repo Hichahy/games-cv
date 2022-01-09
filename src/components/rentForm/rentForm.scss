@@ -1,0 +1,55 @@
+input {
+  width: 100%;
+}
+
+form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.error-rent {
+  font-size: smaller;
+  color: #ff0059;
+  padding: 0;
+  margin: 5px 0;
+  display: flex;
+  justify-content: center;
+
+  i {
+    margin-right: 5px;
+  }
+}
+
+.total-boom {
+  animation: shake-vertical 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+}
+
+@keyframes shake-vertical {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70% {
+    transform: translateY(-8px);
+  }
+
+  20%,
+  40%,
+  60% {
+    transform: translateY(8px);
+  }
+
+  80% {
+    transform: translateY(6.4px);
+  }
+
+  90% {
+    transform: translateY(-6.4px);
+  }
+}

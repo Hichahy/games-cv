@@ -48,6 +48,7 @@
   img {
     width: 33%;
     animation: puff-in-center 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) both;
+    cursor: pointer;
   }
 }
 
@@ -70,8 +71,8 @@
 }
 
 .show-slider {
-  width: 45rem;
-  height: 26rem;
+  width: 60vw;
+  height: 30vw;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -79,7 +80,7 @@
   z-index: 11;
 
   img {
-    height: 26rem;
+    height: 30vw;
     width: 100%;
   }
 }
