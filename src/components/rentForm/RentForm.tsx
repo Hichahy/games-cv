@@ -5,10 +5,12 @@ import { Row, Col, Form, FormControl, Button } from 'react-bootstrap';
 
 interface IProps {
   setTotalAnimation: any;
-  setTotalPrice?: any;
+  setTotalPrice: any;
+  setRentConfirmation:any
+  setUserForm:any
 }
 
-const rentForm = ({ setTotalAnimation, setTotalPrice }: IProps) => {
+const rentForm = ({ setTotalAnimation, setTotalPrice, setRentConfirmation, setUserForm }: IProps) => {
   const [rentForm, setRentForm] = useState({
     name: '',
     surname: '',
@@ -19,6 +21,8 @@ const rentForm = ({ setTotalAnimation, setTotalPrice }: IProps) => {
   });
 
   const [errors, setErrors] = useState<any>({});
+
+  const [rentSubmit, setRentSubmit] = useState(false);
 
   const handleRentForm = (e: { target: { name: string; value: string } }) => {
     setRentForm({ ...rentForm, [e.target.name]: e.target.value });
@@ -117,7 +121,15 @@ const rentForm = ({ setTotalAnimation, setTotalPrice }: IProps) => {
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setErrors(handleValidation());
+    setUserForm(rentForm) // yo
+    setRentSubmit(true)
   };
+
+  useEffect(() => {
+    if (Object.keys(errors).length === 0 && rentSubmit) {
+      setRentConfirmation(true)
+    }
+  }, [errors, rentSubmit])
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -218,7 +230,7 @@ const rentForm = ({ setTotalAnimation, setTotalPrice }: IProps) => {
         </Col>
       </Row>
       <Button type="submit" variant="success">
-        Success
+        DALEJ
       </Button>
     </Form>
   );

@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Permanent+Marker&family=Source+Sans+Pro:wght@200&display=swap");
+
 .rent-container {
-  min-height: 92vh;
+  min-height: 100vh;
   padding: 20px;
   display: flex;
   align-items: center;
@@ -48,4 +50,116 @@
   flex-direction: column;
   align-items: center;
   padding: 50px;
+
+  h1 {
+    font-family: "Source Sans Pro", sans-serif;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.358);
+  }
+}
+
+.hide-form-box {
+  display: none;
+}
+
+.confirmation-box {
+  height: 80vh;
+  width: 130vh;
+  padding: 30px;
+  margin: 50px 0 100px;
+  box-shadow: rgba(255, 0, 255, 0.4) 0 30px 90px;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(0, 0, 0);
+  transform: rotateY(180deg);
+}
+
+.hide-confirmation-box {
+  display: none;
+}
+
+.confirmation-content {
+  color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    font-family: "Source Sans Pro", sans-serif;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.358);
+  }
+
+  .gif {
+    width: 19%;
+  }
+
+  .table {
+    color: #ffffff8a;
+  }
+
+  .btn-box-confirm {
+    display: flex;
+    width: 21rem;
+    justify-content: center;
+    justify-content: space-between;
+
+    button {
+      width: 10rem;
+    }
+  }
+
+  .badge {
+    font-size: 15px;
+    margin-top: 1rem;
+  }
+
+  .selected-game {
+    display: flex;
+    align-items: center;
+    border: solid 1px rgba(128, 128, 128, 0.432);
+
+    img {
+      width: 15%;
+      margin-right: 30px;
+    }
+  }
+
+  tr {
+    border-bottom: solid 1px rgba(128, 128, 128, 0.432);
+  }
+}
+
+.flip-card {
+  background-color: transparent;
+  height: 80vh;
+  width: 130vh;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.flip-card-inner-show {
+  transform: rotateY(180deg);
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.form-box,
+.confirmation-box {
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  margin: 0;
+}
+
+.play {
+  width: 100%;
+  height: 100%;
 }
