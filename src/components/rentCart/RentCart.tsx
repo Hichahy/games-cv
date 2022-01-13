@@ -30,11 +30,11 @@ const rentCart = ({ games, loadGames }: IProps) => {
 
   // copy rentForm state from RentForm component
   const [userForm, setUserForm] = useState({
-    name: 'Patryk',
-    surname: 'Stach',
-    email: 'agentstach@wp.pl',
-    adress: 'Popieluszki8/6a',
-    date: '01-10-0200'
+    name: '',
+    surname: '',
+    email: '',
+    adress: '',
+    date: ''
   });
 
   // Pharams game
