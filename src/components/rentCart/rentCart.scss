@@ -1,165 +1,298 @@
-@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Permanent+Marker&family=Source+Sans+Pro:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Major+Mono+Display&family=Permanent+Marker&family=Source+Sans+Pro:wght@200&display=swap");
 
 .rent-container {
-  min-height: 100vh;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.form-box {
-  height: 80vh;
-  width: 130vh;
-  padding: 0;
-  margin: 50px 0 100px;
-  box-shadow: rgba(255, 0, 255, 0.4) 0 30px 90px;
-}
-
-.form-card {
-  width: 50vh;
-  height: 80vh;
-  background: black;
-  color: white;
-  border-radius: 0;
-  border: none;
-  padding: 0;
-
-  i {
-    color: grey;
-    font-size: 50px;
-    margin-right: 20px;
-  }
-
-  .card-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-}
-
-.form-list {
-  background: black;
-  color: white;
-  padding: 0;
-}
-
-.input-box {
-  color: white;
+  min-height: 97vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 50px;
-
-  h1 {
-    font-family: "Source Sans Pro", sans-serif;
-    text-transform: uppercase;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.358);
-  }
-}
-
-.hide-form-box {
-  display: none;
-}
-
-.confirmation-box {
-  height: 80vh;
-  width: 130vh;
-  padding: 30px;
-  margin: 50px 0 100px;
-  box-shadow: rgba(255, 0, 255, 0.4) 0 30px 90px;
-  display: flex;
   justify-content: center;
-  background-color: rgb(0, 0, 0);
-  transform: rotateY(180deg);
-}
-
-.hide-confirmation-box {
-  display: none;
-}
-
-.confirmation-content {
-  color: white;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+}
+
+.rent-cart {
+  width: 65rem;
+  height: 40rem;
+  padding: 35px;
+  animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  background-color: black;
+}
+
+.neon {
+  width: 65rem;
+  height: 40rem;
+  background-color: blueviolet;
+  position: absolute;
+  filter: blur(100px);
+  z-index: -1;
+  animation: flicker-3 10s linear infinite both;
+}
+
+.box-rent-cart {
+  display: flex;
+  height: 100%;
+}
+
+.front-side {
+  padding: 0;
+  color: white;
+  height: 100%;
+
+  h4 {
+    font-family: "Bebas Neue", cursive;
+  }
+
+  img {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 
   h1 {
-    font-family: "Source Sans Pro", sans-serif;
-    text-transform: uppercase;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.358);
-  }
-
-  .gif {
-    width: 19%;
-  }
-
-  .table {
-    color: #ffffff8a;
-  }
-
-  .btn-box-confirm {
-    display: flex;
-    width: 21rem;
-    justify-content: center;
-    justify-content: space-between;
-
-    button {
-      width: 10rem;
-    }
+    font-family: "Bebas Neue", cursive;
+    margin-bottom: 10px;
   }
 
   .badge {
-    font-size: 15px;
-    margin-top: 1rem;
+    margin-bottom: 10px;
   }
 
-  .selected-game {
-    display: flex;
-    align-items: center;
-    border: solid 1px rgba(128, 128, 128, 0.432);
+  .icon-box {
+    margin-bottom: 0;
 
-    img {
-      width: 15%;
-      margin-right: 30px;
+    i {
+      color: grey;
+      font-size: 50px;
+      margin-right: 20px;
     }
   }
 
-  tr {
-    border-bottom: solid 1px rgba(128, 128, 128, 0.432);
+  button {
+    font-family: "Bebas Neue", cursive;
+    letter-spacing: 7px;
   }
 }
 
-.flip-card {
-  background-color: transparent;
-  height: 80vh;
-  width: 130vh;
-  perspective: 1000px;
+.front-side-hide {
+  display: none;
 }
 
-.flip-card-inner {
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  position: relative;
+.back-side {
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+
+  tr {
+    border: #80808057;
+  }
+
+  h1 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-family: "Bebas Neue", cursive;
+  }
+
+  .confirmation-img-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 20px 0;
+    border: solid 1px rgba(128, 128, 128, 0.523);
+
+    img {
+      width: 15%;
+    }
+
+    h4 {
+      margin-left: 20px;
+      font-family: "Bebas Neue", cursive;
+    }
+  }
+
+  .table {
+    color: #8f8f8f;
+  }
+
+  .badge {
+    margin-bottom: 20px;
+  }
+
+  .confirmation-btn-box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    button {
+      width: 48%;
+      font-family: "Bebas Neue", cursive;
+      letter-spacing: 7px;
+    }
+  }
 }
 
-.flip-card-inner-show {
-  transform: rotateY(180deg);
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  position: relative;
+.back-side-hide {
+  display: none;
 }
 
-.form-box,
-.confirmation-box {
-  position: absolute;
-  -webkit-backface-visibility: hidden;
-  margin: 0;
-}
-
-.play {
-  width: 100%;
+.tittle-content {
   height: 100%;
+  margin-right: 30px;
+  display: flex;
+  justify-items: start;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.total-boom {
+  animation: shake-vertical 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+}
+
+@media screen and (max-width: 1100px) {
+  .rent-cart {
+    width: 100%;
+  }
+
+  .neon {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .neon {
+    display: none;
+  }
+
+  .rent-cart {
+    padding: 35px;
+    width: auto;
+    box-shadow: none;
+    height: 100%;
+  }
+
+  .box-rent-cart {
+    display: block;
+    height: auto;
+  }
+
+  .front-side {
+    padding: 0;
+    color: white;
+
+    img {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 30px 0 20px;
+    }
+
+    .icon-box {
+      margin-bottom: 10px;
+    }
+  }
+
+  .front-side-hide {
+    display: none;
+  }
+
+  .back-side {
+    h1 {
+      display: flex;
+      justify-content: center;
+    }
+
+    .confirmation-img-box {
+      justify-content: space-between;
+      border: none;
+
+      img {
+        width: 45%;
+      }
+    }
+
+    .confirmation-btn-box {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .back-side-hide {
+    display: none;
+  }
+
+  .tittle-content {
+    display: block;
+    margin: 0;
+  }
+
+  .total {
+    display: none;
+  }
+}
+
+@keyframes scale-up-center {
+  0% {
+    transform: scale(0.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes flicker-3 {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  32.98% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 0;
+  }
+  34% {
+    opacity: 0;
+  }
+  34.02% {
+    opacity: 1;
+  }
+  34.98% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 0;
+  }
+  35.9% {
+    opacity: 0;
+  }
+  35.92% {
+    opacity: 1;
+  }
+  38.98% {
+    opacity: 1;
+  }
+  39% {
+    opacity: 0;
+  }
+  39.8% {
+    opacity: 0;
+  }
+  39.82% {
+    opacity: 1;
+  }
+  83.98% {
+    opacity: 1;
+  }
+  84% {
+    opacity: 0;
+  }
+  84.9% {
+    opacity: 0;
+  }
+  84.92% {
+    opacity: 1;
+  }
 }

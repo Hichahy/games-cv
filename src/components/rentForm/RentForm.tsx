@@ -1,16 +1,25 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 import './rentForm.scss';
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Form, FormControl, Button } from 'react-bootstrap';
+import { Row, Col, Form, FormControl, Button, Badge } from 'react-bootstrap';
 
 interface IProps {
   setTotalAnimation: any;
   setTotalPrice: any;
-  setRentConfirmation:any
-  setUserForm:any
+  setRentConfirmation: any;
+  setUserForm: any;
+  totalPriceOperation: any;
+  totalAnimation: any;
 }
 
-const rentForm = ({ setTotalAnimation, setTotalPrice, setRentConfirmation, setUserForm }: IProps) => {
+const rentForm = ({
+  setTotalAnimation,
+  setTotalPrice,
+  setRentConfirmation,
+  setUserForm,
+  totalPriceOperation,
+  totalAnimation
+}: IProps) => {
   const [rentForm, setRentForm] = useState({
     name: '',
     surname: '',
@@ -118,118 +127,134 @@ const rentForm = ({ setTotalAnimation, setTotalPrice, setRentConfirmation, setUs
     return errors;
   };
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const goUp = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const handleSubmit = (e: { preventDefault: () => void}) => {
     e.preventDefault();
     setErrors(handleValidation());
-    setUserForm(rentForm) // yo
-    setRentSubmit(true)
+    setUserForm(rentForm);
+    setRentSubmit(true);
   };
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && rentSubmit) {
-      setRentConfirmation(true)
+      setRentConfirmation(true);
+      goUp()
     }
-  }, [errors, rentSubmit])
+  }, [errors, rentSubmit]);
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Row>
-        <Col>
-          <Form.Label>Imię</Form.Label>
-          <FormControl
-            type="text"
-            placeholder="Imię"
-            name="name"
-            onChange={handleRentForm}
-          />
-          {errors.name && (
-            <Form.Label className="error-rent">
-              <i className="bi bi-exclamation-triangle"></i>
-              {errors.name}
-            </Form.Label>
-          )}
-        </Col>
-        <Col>
-          <Form.Label>Nazwisko</Form.Label>
-          <FormControl
-            type="text"
-            placeholder="Nazwisko"
-            name="surname"
-            onChange={handleRentForm}
-          />
-          {errors.surname && (
-            <Form.Label className="error-rent">
-              <i className="bi bi-exclamation-triangle"></i>
-              {errors.surname}
-            </Form.Label>
-          )}
+    <Form onSubmit={handleSubmit} className="rent-form">
+      <h1>Wypełnij formularz</h1>
+      <Row className='form-box'>
+        <Col className="input-container">
+          <Col className="input-box">
+            <Form.Label>Imię</Form.Label>
+            <FormControl
+              type="text"
+              placeholder="Imię"
+              name="name"
+              onChange={handleRentForm}
+            />
+            {errors.name && (
+              <Form.Label className="error-rent">
+                <i className="bi bi-exclamation-triangle"></i>
+                {errors.name}
+              </Form.Label>
+            )}
+          </Col>
+
+          <Col className="input-box">
+            <Form.Label>Nazwisko</Form.Label>
+            <FormControl
+              type="text"
+              placeholder="Nazwisko"
+              name="surname"
+              onChange={handleRentForm}
+            />
+            {errors.surname && (
+              <Form.Label className="error-rent">
+                <i className="bi bi-exclamation-triangle"></i>
+                {errors.surname}
+              </Form.Label>
+            )}
+          </Col>
+
+          <Col className="input-box">
+            <Form.Label>Email</Form.Label>
+            <FormControl
+              type="text"
+              placeholder="Email"
+              name="email"
+              onChange={handleRentForm}
+            />
+            {errors.email && (
+              <Form.Label className="error-rent">
+                <i className="bi bi-exclamation-triangle"></i>
+                {errors.email}
+              </Form.Label>
+            )}
+          </Col>
+
+          <Col className="input-box">
+            <Form.Label>Adres</Form.Label>
+            <FormControl
+              type="text"
+              placeholder="Adres"
+              name="adress"
+              onChange={handleRentForm}
+            />
+            {errors.adress && (
+              <Form.Label className="error-rent">
+                <i className="bi bi-exclamation-triangle"></i>
+                {errors.adress}
+              </Form.Label>
+            )}
+          </Col>
+
+          <Col className="input-box">
+            <Form.Label>Pożyczam do</Form.Label>
+            <FormControl
+              type="date"
+              min={`${yyyy}-${mm}-${dd}`}
+              name="date"
+              onChange={handleRentForm}
+            />
+            {errors.date && (
+              <Form.Label className="error-rent">
+                <i className="bi bi-exclamation-triangle"></i>
+                {errors.date}
+              </Form.Label>
+            )}
+          </Col>
+
+          <Col className="input-box">
+            <Form.Label>Twój wiek</Form.Label>
+            <FormControl
+              type="number"
+              min="1"
+              name="age"
+              onChange={handleRentForm}
+            />
+            {errors.age && (
+              <Form.Label className="error-rent">
+                <i className="bi bi-exclamation-triangle"></i>
+                {errors.age}
+              </Form.Label>
+            )}
+          </Col>
         </Col>
       </Row>
-      <Row>
-        <Col>
-          <Form.Label>Email</Form.Label>
-          <FormControl
-            type="text"
-            placeholder="Email"
-            name="email"
-            onChange={handleRentForm}
-          />
-          {errors.email && (
-            <Form.Label className="error-rent">
-              <i className="bi bi-exclamation-triangle"></i>
-              {errors.email}
-            </Form.Label>
-          )}
-        </Col>
-        <Col>
-          <Form.Label>Adres</Form.Label>
-          <FormControl
-            type="text"
-            placeholder="Adres"
-            name="adress"
-            onChange={handleRentForm}
-          />
-          {errors.adress && (
-            <Form.Label className="error-rent">
-              <i className="bi bi-exclamation-triangle"></i>
-              {errors.adress}
-            </Form.Label>
-          )}
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Form.Label>Pożyczam do</Form.Label>
-          <FormControl
-            type="date"
-            min={`${yyyy}-${mm}-${dd}`}
-            name="date"
-            onChange={handleRentForm}
-          />
-          {errors.date && (
-            <Form.Label className="error-rent">
-              <i className="bi bi-exclamation-triangle"></i>
-              {errors.date}
-            </Form.Label>
-          )}
-        </Col>
-        <Col>
-          <Form.Label>Twój wiek</Form.Label>
-          <FormControl
-            type="number"
-            min="1"
-            name="age"
-            onChange={handleRentForm}
-          />
-          {errors.age && (
-            <Form.Label className="error-rent">
-              <i className="bi bi-exclamation-triangle"></i>
-              {errors.age}
-            </Form.Label>
-          )}
-        </Col>
-      </Row>
-      <Button type="submit" variant="success">
+      <Badge
+        bg="warning"
+        text="dark"
+        className={`total ${totalAnimation ? 'total-boom' : ''}`}
+      >
+        {totalPriceOperation}
+      </Badge>
+      <Button className="form-rent-btn" type="submit" variant="success">
         DALEJ
       </Button>
     </Form>
