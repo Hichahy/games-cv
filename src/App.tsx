@@ -31,6 +31,7 @@ const App = ({ toggleMobileMode }: IProps) => {
   }, [toggleMobileMode, width])
 
   return (
+    <>
     <Container fluid>
       <Row>
         <Navigation />
@@ -43,6 +44,7 @@ const App = ({ toggleMobileMode }: IProps) => {
       </Row>
       <Footer />
     </Container>
+    </>
   )
 }
 
