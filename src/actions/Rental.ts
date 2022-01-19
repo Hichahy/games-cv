@@ -8,10 +8,12 @@ import {
   FILTER_SEARCH,
   FILTER_VARIOUS,
   FILTER_PATFORM,
-  FILTER_TYPE
+  FILTER_TYPE,
+  SEND_ORDER
 } from '../common/types'
 import axios from 'axios'
-import { IGames } from '../types/types'
+import { IGames, IOrders } from '../types/types'
+import firebaseAxios from '../firebaseAxios'
 
 export const loadGames = () => async (dispatch: any) => {
   try {
@@ -155,6 +157,32 @@ export const filterType = (filtered: IGames[], type: string) => (dispatch: any) 
           ? filtered
           : filtered.filter((x) => x.type.indexOf(type) >= 0)
       }
+    })
+  } catch (err) {
+    console.log('err', err)
+  }
+}
+
+export const sendData = ({ name, surname, date, adress, email, gameName, idGame } :IOrders) => (dispatch: any) => {
+  const Data = {
+    order: {
+      name: name,
+      adress: adress,
+      surname: surname,
+      email: email,
+      idGame: idGame,
+      gameName: gameName,
+      date: date
+    }
+  }
+  firebaseAxios.post('/orders.json', Data).then((response) => {
+    console.log(response)
+  })
+
+  try {
+    dispatch({
+      type: SEND_ORDER,
+      payload: { }
     })
   } catch (err) {
     console.log('err', err)

@@ -41,7 +41,7 @@ const Filters = ({
               value={sort}
               onChange={(e) => filterVarious(games, e.target.value)}
             >
-              <option value="" disabled selected>Sortuj według</option>
+              <option value="" hidden>Sortuj według</option>
               <option value="">Ostatnio dodane</option>
               <option value="alphabet">A-Z</option>
               <option value="highest">Najwyższa cena</option>
@@ -52,7 +52,7 @@ const Filters = ({
             value={platform}
             onChange={(e) => filterPlatform(games, e.target.value)}
             >
-              <option value="" disabled selected>Platforma</option>
+              <option value="" hidden>Platforma</option>
               <option value="">Wszystkie</option>
               <option value="PlayStation 4">Playstation</option>
               <option value="xbox">xbox</option>
@@ -63,7 +63,7 @@ const Filters = ({
              value={type}
              onChange={(e) => filterType(games, e.target.value)}
             >
-              <option value="" disabled selected>Gatunek</option>
+              <option value="" hidden>Gatunek</option>
               <option value="">Wszyskie</option>
               <option value="adventure">adventure</option>
               <option value="survivor">survivor</option>

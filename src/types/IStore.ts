@@ -1,9 +1,8 @@
-import { IGames, IOrders } from "./types"
+import { IGames } from "./types"
 
 export interface IStore {
     rental: {
      games: IGames[];
-     orders: IOrders[];
      modal: boolean;
      mobileMode: boolean;
      phrase: string;
