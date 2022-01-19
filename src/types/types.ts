@@ -16,18 +16,18 @@ export interface IOrders {
   name: string,
   surname: string,
   adress: string,
-  email: string | number,
-  date: number | string,
-  age: string | number,
-  idGame: string | number
+  email: string,
+  date: string,
+  idGame: string,
+  gameName: string
 }
 
 export interface IErrors {
   name: string,
   surname: string,
   adress: string,
-  email: string | number,
-  date: number | string,
-  age: string | number,
-  idGame: string | number
+  email: string,
+  date: string,
+  age: number,
+  idGame: string
 }

@@ -1,15 +1,30 @@
+/* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-shadow */
 import './rentForm.scss';
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Form, FormControl, Button, Badge } from 'react-bootstrap';
 
 interface IProps {
-  setTotalAnimation: any;
-  setTotalPrice: any;
-  setRentConfirmation: any;
-  setUserForm: any;
-  totalPriceOperation: any;
-  totalAnimation: any;
+  setTotalAnimation: React.Dispatch<React.SetStateAction<boolean>>;
+  setTotalPrice: React.Dispatch<React.SetStateAction<{
+    d2: string;
+    rentDays: number;
+}>>
+  setRentConfirmation: React.Dispatch<React.SetStateAction<boolean>>;
+  setUserForm: React.Dispatch<React.SetStateAction<{
+    name: string;
+    surname: string;
+    email: string;
+    adress: string;
+    date: string;
+    idGame: string;
+    gameName: string;
+}>>;
+  totalPriceOperation: JSX.Element;
+  totalAnimation: boolean;
+  idGame: string;
+  gameName: string;
+  mobileMode: boolean;
 }
 
 const rentForm = ({
@@ -18,7 +33,10 @@ const rentForm = ({
   setRentConfirmation,
   setUserForm,
   totalPriceOperation,
-  totalAnimation
+  totalAnimation,
+  idGame,
+  gameName,
+  mobileMode
 }: IProps) => {
   const [rentForm, setRentForm] = useState({
     name: '',
@@ -26,7 +44,9 @@ const rentForm = ({
     email: '',
     adress: '',
     date: '',
-    age: 0
+    age: 0,
+    idGame: idGame,
+    gameName: gameName
   });
 
   const [errors, setErrors] = useState<any>({});
@@ -127,10 +147,6 @@ const rentForm = ({
     return errors;
   };
 
-  const goUp = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-
   const handleSubmit = (e: { preventDefault: () => void}) => {
     e.preventDefault();
     setErrors(handleValidation());
@@ -141,9 +157,15 @@ const rentForm = ({
   useEffect(() => {
     if (Object.keys(errors).length === 0 && rentSubmit) {
       setRentConfirmation(true);
-      goUp()
-    }
+      setRentSubmit(false)
+    };
   }, [errors, rentSubmit]);
+
+  useEffect(() => {
+    if (mobileMode && rentSubmit) {
+      window.scrollTo(0, 0);
+    }
+  }, [rentSubmit])
 
   return (
     <Form onSubmit={handleSubmit} className="rent-form">

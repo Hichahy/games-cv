@@ -2,7 +2,7 @@
 import './App.scss'
 import React, { useEffect, useState } from 'react'
 import { Container, Row } from 'react-bootstrap'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Home from './components/home'
 import Navigation from './components/navigation'
@@ -29,6 +29,12 @@ const App = ({ toggleMobileMode }: IProps) => {
       toggleMobileMode(false)
     }
   }, [toggleMobileMode, width])
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <>
