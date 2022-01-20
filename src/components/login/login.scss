@@ -1,0 +1,75 @@
+.advertisement-box-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  padding: 0;
+  width: 50%;
+  background-image: url("../../../public//image/login/login.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  height: 100%;
+
+  h1 {
+    font-family: "Bebas Neue", cursive;
+  }
+
+  .mobile-info {
+    display: none;
+  }
+}
+
+.input-box-login {
+  padding: 0;
+  width: 50%;
+  color: white;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  form {
+    height: 80%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    div {
+      margin-bottom: 25px;
+    }
+  }
+
+  button {
+    font-family: "Bebas Neue", cursive;
+    letter-spacing: 7px;
+    min-height: fit-content;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .advertisement-box-login {
+    width: 100%;
+    min-height: 92vh;
+
+    .mobile-info {
+      display: block;
+    }
+  }
+
+  .input-box-login {
+    width: 100%;
+
+    form {
+      width: 100%;
+      margin-top: 35px;
+
+      div {
+        margin-bottom: 25px;
+      }
+    }
+  }
+
+}

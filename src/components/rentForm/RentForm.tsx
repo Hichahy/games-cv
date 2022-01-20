@@ -111,19 +111,19 @@ const rentForm = ({
     if (!rentForm.name.trim()) {
       errors.name = 'Wymagane Imię';
     } else if (!/^[A-Za-z]+/.test(rentForm.name.trim())) {
-      errors.name = 'Nieprawiłwe imię';
+      errors.name = 'Nieprawidłowe imię';
     }
 
     if (!rentForm.surname.trim()) {
       errors.surname = 'Wymagane nazwisko';
     } else if (!/^[A-Za-z]+/.test(rentForm.surname.trim())) {
-      errors.surname = 'Nieprawiłwe Nazwisko';
+      errors.surname = 'Nieprawidłowe Nazwisko';
     }
 
     if (!rentForm.email) {
       errors.email = 'Wymagany email';
     } else if (!/\S+@\S+\.\S+/.test(rentForm.email)) {
-      errors.email = 'Niepoprawny email';
+      errors.email = 'Nieprawidłowy email';
     }
 
     if (!rentForm.adress) {

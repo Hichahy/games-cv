@@ -2,7 +2,7 @@
 import './App.scss'
 import React, { useEffect, useState } from 'react'
 import { Container, Row } from 'react-bootstrap'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation, Navigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Home from './components/home'
 import Navigation from './components/navigation'
@@ -12,6 +12,8 @@ import { IStore } from './types/IStore'
 import { toggleMobileMode } from './actions/Rental'
 import Footer from './components/footer'
 import RentCart from './components/rentCart'
+import Register from './components/register'
+import Login from './components/login'
 
 interface IProps {
   toggleMobileMode: (mobileMode: boolean) => void;
@@ -42,8 +44,11 @@ const App = ({ toggleMobileMode }: IProps) => {
       <Row>
         <Navigation />
         <Routes>
+        <Route path="/" element={<Navigate replace to="/home" />} />
           <Route path="/home" element={<Home />} />
           <Route path="/games" element={<Games />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/game/:id" element={<GameCart />} />
           <Route path="/rent/:id" element={<RentCart />} />
         </Routes>
