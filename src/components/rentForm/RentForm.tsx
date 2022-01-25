@@ -3,6 +3,7 @@
 import './rentForm.scss';
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Form, FormControl, Button, Badge } from 'react-bootstrap';
+import { IOrders } from '../../types/types';
 
 interface IProps {
   setTotalAnimation: React.Dispatch<React.SetStateAction<boolean>>;
@@ -11,16 +12,8 @@ interface IProps {
     rentDays: number;
 }>>
   setRentConfirmation: React.Dispatch<React.SetStateAction<boolean>>;
-  setUserForm: React.Dispatch<React.SetStateAction<{
-    name: string;
-    surname: string;
-    email: string;
-    adress: string;
-    date: string;
-    idGame: string;
-    gameName: string;
-}>>;
-  totalPriceOperation: JSX.Element;
+  setUserForm: React.Dispatch<React.SetStateAction<IOrders>>;
+  totalCash: string;
   totalAnimation: boolean;
   idGame: string;
   gameName: string;
@@ -32,7 +25,7 @@ const rentForm = ({
   setTotalPrice,
   setRentConfirmation,
   setUserForm,
-  totalPriceOperation,
+  totalCash,
   totalAnimation,
   idGame,
   gameName,
@@ -46,7 +39,8 @@ const rentForm = ({
     date: '',
     age: 0,
     idGame: idGame,
-    gameName: gameName
+    gameName: gameName,
+    price: totalCash
   });
 
   const [errors, setErrors] = useState<any>({});
@@ -57,8 +51,7 @@ const rentForm = ({
     setRentForm({ ...rentForm, [e.target.name]: e.target.value });
   };
 
-  // Date
-
+  // Date operations to set day and calculate price
   const today: any = new Date();
   let dd: number | string = today.getDate() + 1;
   let mm: number | string = today.getMonth() + 1;
@@ -102,7 +95,6 @@ const rentForm = ({
       clearTimeout(timer);
     };
   }, [d2, rentDays, setTotalPrice, setTotalAnimation]);
-
   // Date End //
 
   const handleValidation = () => {
@@ -152,6 +144,7 @@ const rentForm = ({
     setErrors(handleValidation());
     setUserForm(rentForm);
     setRentSubmit(true);
+    rentForm.price = totalCash
   };
 
   useEffect(() => {
@@ -274,7 +267,7 @@ const rentForm = ({
         text="dark"
         className={`total ${totalAnimation ? 'total-boom' : ''}`}
       >
-        {totalPriceOperation}
+        total:{totalCash}¥
       </Badge>
       <Button className="form-rent-btn" type="submit" variant="success">
         DALEJ

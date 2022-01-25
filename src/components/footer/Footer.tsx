@@ -1,6 +1,6 @@
-import './footer.scss'
-import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import './footer.scss';
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 
 const Footer = () => {
   return (
@@ -9,10 +9,14 @@ const Footer = () => {
         <Col>
           <h2>O nas 🦐</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-            eligendi iusto quae est in natus necessitatibus quos perspiciatis
-            maiores, numquam quo soluta facere, consequuntur deserunt molestias
-            harum cum adipisci inventore.
+            Sajgonka jest fikcyjną wypożyczalnią gier. Pokazuje w niej moje
+            umiejętności w programowaniu react z użyciem Reduxa / API / Bootsrapa / TypeScript / Firebase. Każdy
+            użytkownik może założyć konto i otrzymać zniżkę -25% na wybraną grę.
+            Jest to symulacja działania internetowej wypożyczalni gier. Kod
+            dotępny jest na moim{' '}
+            <a style={{ color: 'yellow' }} target="_blank" href="https://github.com/Hichahy/games-cv" rel="noreferrer">
+            <i className="bi bi-github"></i> githubie
+            </a>
           </p>
         </Col>
       </Row>
@@ -52,7 +56,7 @@ const Footer = () => {
         </a>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
