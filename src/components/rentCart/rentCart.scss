@@ -212,7 +212,7 @@
 
   .rent-cart {
     padding: 35px;
-    width: auto;
+    width: 100%;
     box-shadow: none;
     height: 100%;
   }
@@ -353,6 +353,7 @@
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }

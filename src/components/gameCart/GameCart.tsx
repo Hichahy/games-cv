@@ -13,6 +13,8 @@ import { useParams, Link } from 'react-router-dom';
 import { IGames } from '../../types/types';
 import { LinkContainer } from 'react-router-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
+import { auth } from '../../firebase-config';
+import { onAuthStateChanged } from 'firebase/auth';
 
 interface IProps {
   games: IGames[];
@@ -22,10 +24,11 @@ interface IProps {
 
 const GameCart = ({ games, mobileMode, loadGames }: IProps) => {
   const [showScreen, setShowScreen] = useState(false);
+  const [user, setUser] = useState<any>({});
 
-  useEffect(() => {
-    loadGames();
-  }, [loadGames]);
+  onAuthStateChanged(auth, (currentUser: any) => {
+    setUser(currentUser);
+  });
 
   useEffect(() => {
     if (mobileMode) {
@@ -33,6 +36,7 @@ const GameCart = ({ games, mobileMode, loadGames }: IProps) => {
     } else {
       setShowScreen(false);
     }
+    loadGames();
   }, [mobileMode]);
 
   const { id } = useParams();
@@ -146,7 +150,16 @@ const GameCart = ({ games, mobileMode, loadGames }: IProps) => {
       <section className="reckoning">
         <div>
           <i className="bi bi-cash-coin"></i>
-          <span>{game.price} ¥ za dzień</span>
+          {user
+            ? (
+            <span>
+              <p style={{ textDecoration: 'line-through' }}>{game.price}</p>{' '}
+              {((25 / 100) * game.price).toFixed(2)} ¥ za dzień
+            </span>
+              )
+            : (
+            <span>{game.price.toFixed(2)}¥ za dzień</span>
+              )}
         </div>
         <Link to={`/rent/${game.id}`}>
           <Button variant="warning">rezerwuj teraz!</Button>{' '}

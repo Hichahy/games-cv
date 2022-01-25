@@ -1,14 +1,9 @@
-@font-face {
-  font-family: "CustomFont";
-  src: url("../../../public/font.ttf");
-}
-
 nav {
   font-weight: 400;
 }
 
 .brand {
   text-transform: uppercase;
-  font-family: CustomFont;
+  font-family: "Bebas Neue", cursive;
   font-weight: 1;
 }

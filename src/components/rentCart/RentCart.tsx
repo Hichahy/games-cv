@@ -13,6 +13,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { IGames, IOrders } from '../../types/types';
 import RentForm from '../rentForm/RentForm';
 import './rentCart.scss';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../../firebase-config';
 
 interface IProps {
   games: IGames[];
@@ -24,7 +26,8 @@ interface IProps {
     adress,
     email,
     idGame,
-    gameName
+    gameName,
+    price
   }: IOrders) => void;
   mobileMode: boolean;
 }
@@ -32,11 +35,9 @@ interface IProps {
 const rentCart = ({ games, loadGames, sendData, mobileMode }: IProps) => {
   // Pharams game
   const { id } = useParams();
-
   const find = () => {
     return games.find((x) => x.id === id);
   };
-
   const game = find()!;
   // Pharams game //
 
@@ -58,15 +59,21 @@ const rentCart = ({ games, loadGames, sendData, mobileMode }: IProps) => {
     adress: '',
     date: '',
     idGame: '',
-    gameName: ''
+    gameName: '',
+    price: ''
+  });
+  const [user, setUser] = useState<any>({});
+
+  onAuthStateChanged(auth, (currentUser: any) => {
+    setUser(currentUser);
   });
 
   useEffect(() => {
     loadGames();
   }, [loadGames]);
 
+  // counter to back /home after and all rent operations
   const navigate = useNavigate();
-
   useEffect(() => {
     if (rentComplete === true) {
       setTimeout(() => {
@@ -79,12 +86,27 @@ const rentCart = ({ games, loadGames, sendData, mobileMode }: IProps) => {
     if (counter < 1) {
       navigate('/home');
       setRentComplete(false);
-    };
-    if (mobileMode && rentComplete) {
-      window.scrollTo(0, 0);
     }
   }, [counter, rentComplete]);
 
+  // scroll up when end but only in mobile mode
+  useEffect(() => {
+    if (mobileMode && rentComplete) {
+      window.scrollTo(0, 0);
+    }
+  }, [rentComplete]);
+
+  // -25 % for useres
+  const totalCash = user
+    ? ((25 / 100) * game.price * totalPrice.rentDays).toFixed(2)
+    : (game.price * totalPrice.rentDays).toFixed(2);
+
+  const sendOrderHandle = () => {
+    sendData(userForm);
+    setRentComplete(true);
+  };
+
+  // loading
   if (games.length < 1) {
     return (
       <div className="loading-box">
@@ -98,15 +120,6 @@ const rentCart = ({ games, loadGames, sendData, mobileMode }: IProps) => {
     );
   }
 
-  const totalPriceOperation = (
-    <span>total: {(game.price * totalPrice.rentDays).toFixed(2)} ¥</span>
-  );
-
-  const sendOrderHandle = () => {
-    sendData(userForm);
-    setRentComplete(true);
-  };
-
   return (
     <Container className="rent-container">
       <Col className={`${!rentComplete ? 'neon' : 'neon-green'}`}></Col>
@@ -119,14 +132,17 @@ const rentCart = ({ games, loadGames, sendData, mobileMode }: IProps) => {
               <Image src={game.image} alt={`${game.name} cover`}></Image>
               <h4>{game.name}</h4>
               <Badge bg="warning" text="dark">
-                {game.price.toFixed(2)}¥/dzień
+                {user
+                  ? ((25 / 100) * game.price).toFixed(2)
+                  : game.price.toFixed(2)}
+                ¥/dzień
               </Badge>
               <Badge
                 bg="warning"
                 text="dark"
                 className={`total ${totalAnimation ? 'total-boom' : ''}`}
               >
-                {totalPriceOperation}
+                total:{totalCash}¥
               </Badge>
               <div className="icon-box">
                 {game.platform.includes('PlayStation 4')
@@ -151,7 +167,7 @@ const rentCart = ({ games, loadGames, sendData, mobileMode }: IProps) => {
               setTotalPrice={setTotalPrice}
               setRentConfirmation={setRentConfirmation}
               setUserForm={setUserForm}
-              totalPriceOperation={totalPriceOperation}
+              totalCash={totalCash}
               totalAnimation={totalAnimation}
               idGame={game.id}
               gameName={game.name}
@@ -194,7 +210,7 @@ const rentCart = ({ games, loadGames, sendData, mobileMode }: IProps) => {
             </tbody>
           </Table>
           <Badge bg="warning" text="dark">
-            {totalPriceOperation}
+            total:{totalCash}¥
           </Badge>
           <div className="confirmation-btn-box">
             <Button onClick={() => setRentConfirmation(false)} variant="danger">

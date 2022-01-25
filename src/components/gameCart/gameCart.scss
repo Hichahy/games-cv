@@ -49,9 +49,11 @@
   justify-content: space-between;
   flex-direction: row;
   margin-top: 20px;
+  height: 20vw;
 
   img {
     width: 33%;
+    min-height: 100%;
     animation: puff-in-center 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) both;
     cursor: pointer;
   }
@@ -121,6 +123,12 @@
   span {
     color: white;
     font-size: 40px;
+    display: flex;
+
+    p {
+      margin-right: 10px;
+      color: gold;
+    }
   }
 
   div {

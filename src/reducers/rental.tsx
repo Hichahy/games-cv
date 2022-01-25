@@ -2,7 +2,6 @@
 import typeToReducer from 'type-to-reducer'
 import {
   LOAD_GAME,
-  TOGGLE_MODAL,
   MOBILE_MODE,
   FILTER_SEARCH,
   FILTER_VARIOUS,
@@ -48,11 +47,6 @@ export const user = typeToReducer(
     [MOBILE_MODE]: (state: stateRental, action: any) => ({
       ...state,
       mobileMode: action.payload.mobileMode
-    }),
-
-    [TOGGLE_MODAL]: (state: stateRental, action: any) => ({
-      ...state,
-      modal: action.payload.modal
     }),
 
     [FILTER_SEARCH]: (state: stateRental, action: any) => ({

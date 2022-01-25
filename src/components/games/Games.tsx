@@ -16,7 +16,7 @@ interface IProps {
 const Games = ({ games, filteredItems, loadGames, phrase }: IProps) => {
   useEffect(() => {
     loadGames()
-  }, [loadGames])
+  }, [])
 
   if (games.length < 1) {
     return (

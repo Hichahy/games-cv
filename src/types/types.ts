@@ -19,15 +19,6 @@ export interface IOrders {
   email: string,
   date: string,
   idGame: string,
-  gameName: string
-}
-
-export interface IErrors {
-  name: string,
-  surname: string,
-  adress: string,
-  email: string,
-  date: string,
-  age: number,
-  idGame: string
+  gameName: string,
+  price: string
 }
