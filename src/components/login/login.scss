@@ -50,6 +50,16 @@
   }
 }
 
+.neon-yellow {
+  width: 65rem;
+  height: 40rem;
+  background-color: rgb(255, 217, 0);
+  position: absolute;
+  filter: blur(100px);
+  z-index: -1;
+  animation: flicker-3 10s linear infinite both;
+}
+
 @media screen and (max-width: 830px) {
   .advertisement-box-login {
     width: 100%;
@@ -58,6 +68,10 @@
     .mobile-info {
       display: block;
     }
+  }
+
+  .neon-yellow {
+    display: none;
   }
 
   .input-box-login {

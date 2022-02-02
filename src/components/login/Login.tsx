@@ -1,13 +1,22 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 import './login.scss';
 import React, { useState, useEffect, useRef } from 'react';
-import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  Button,
+  Spinner,
+  Nav
+} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../firebase-config';
+import { LinkContainer } from 'react-router-bootstrap';
 
 interface IProps {
-  mobileMode: boolean
+  mobileMode: boolean;
 }
 
 const Login = ({ mobileMode }: IProps) => {
@@ -120,13 +129,13 @@ const Login = ({ mobileMode }: IProps) => {
   // if error scroll to him
   useEffect(() => {
     if (mobileMode && Object.keys(errors).length > 0) {
-      myRef.current.scrollIntoView()
+      myRef.current.scrollIntoView();
     }
-  }, [triger])
+  }, [triger]);
 
   return (
     <Container className="account-container">
-      <Col className="neon-green"></Col>
+      <Col className="neon-yellow"></Col>
       <Row className="account-box">
         <Col className="advertisement-box-login">
           <Col style={{ padding: '10%', width: '100%' }}>
@@ -177,6 +186,12 @@ const Login = ({ mobileMode }: IProps) => {
               </Button>
             </Form>
               )}
+              {loading
+                ? null :
+          <LinkContainer to="/register">
+            <Nav.Link>Nie masz jeszcze konta?</Nav.Link>
+          </LinkContainer>
+          }
         </Col>
       </Row>
     </Container>

@@ -1,14 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&family=VT323&display=swap');
+
 .home-container {
   padding: 0;
 
+  h3 {
+    font-family: "Bebas Neue", cursive;
+  }
+}
+
+.carousel-inner {
   img {
     width: 100%;
     height: 93vh;
     display: flex;
     object-fit: cover;
   }
+}
 
-  h3 {
-    font-family: "Bebas Neue", cursive;
+.wrapper {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  perspective: 10px;
+  padding: 0;
+}
+
+.wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+header {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+  transform-style: preserve-3d;
+  z-index: -1;
+}
+
+.introduce-bg {
+  transform: translateZ(-10px) scale(2);
+}
+
+.introduce-fg {
+  transform: translateZ(-5px) scale(1.5);
+}
+
+.introduce-bg,
+.introduce-fg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.title {
+  font-size: 7rem;
+  color: white;
+  text-shadow: 0 0 5px black;
+  font-family: "Bebas Neue", cursive;
+}
+
+section {
+  font-size: 2rem;
+  color: white;
+  background-color: black;
+  padding: 40px;
+}
+
+.box-title {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  color: white;
+  width: 35rem;
+
+  p {
+    font-size: 2rem;
+    font-family: 'VT323', monospace;
+  }
+}
+
+.description {
+  font-size: 2rem;
+  font-family: 'VT323', monospace;
+  box-shadow: 0 0 82px 103px #000;
+}
+
+.logos {
+  height: 10rem;
+  background-color: white;
+}
+
+@media screen and (max-width: 830px) {
+  .title {
+    font-size: 4rem;
+  }
+
+  .box-title {
+    padding: 20px;
+  }
+
+  .description {
+    font-size: 20px;
+    padding: 10px;
   }
 }

@@ -1,4 +1,4 @@
-import { IGames } from "./types"
+import { IGames } from './types'
 
 export interface IStore {
     rental: {
@@ -8,7 +8,7 @@ export interface IStore {
      phrase: string;
      sort: string;
      platform: string;
-     filteredItems: Array<{}>
-     type: Array<{}>
+     filteredItems: Array<{}>;
+     type: Array<{}>;
     }
 }

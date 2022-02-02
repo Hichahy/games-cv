@@ -2,7 +2,16 @@
 import './register.scss';
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  Button,
+  Spinner,
+  Nav
+} from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged
@@ -214,6 +223,13 @@ const Register = ({ mobileMode }: IProps) => {
                 Rejestracja
               </Button>
             </Form>
+              )}
+          {loading
+            ? null
+            : (
+            <LinkContainer to="/login">
+              <Nav.Link>Masz już konto?</Nav.Link>
+            </LinkContainer>
               )}
         </Col>
       </Row>

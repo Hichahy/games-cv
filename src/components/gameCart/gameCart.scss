@@ -32,7 +32,6 @@
 
   h1 {
     color: white;
-    font-family: "Bebas Neue", cursive;
   }
 
   p {
@@ -49,7 +48,7 @@
   justify-content: space-between;
   flex-direction: row;
   margin-top: 20px;
-  height: 20vw;
+  height: 22vw;
 
   img {
     width: 33%;
@@ -62,6 +61,7 @@
 .image-cart {
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
 .carousel-cart {
@@ -75,6 +75,10 @@
 .cart-section1 {
   display: flex;
   color: rgb(201, 201, 201);
+
+  span {
+    font-size: 15px;
+  }
 }
 
 .show-slider {
@@ -164,6 +168,7 @@
 
   .cart-section1 {
     flex-direction: column;
+    padding: 10px;
   }
 
   .cart-box2 {
@@ -203,11 +208,11 @@
 
   .reckoning {
     i {
-      font-size: 30px;
+      font-size: 20px;
     }
 
     span {
-      font-size: 30px;
+      font-size: 20px;
     }
 
     button {

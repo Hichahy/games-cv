@@ -82,11 +82,15 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+
+    .nav-link {
+      margin-top: 25px;
+    }
   }
 
   .input-box-register {
     width: 100%;
-    min-height: 30vh;
+    min-height: fit-content;
 
     form {
       width: 100%;
