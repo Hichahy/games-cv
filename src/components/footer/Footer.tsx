@@ -14,7 +14,7 @@ const Footer = () => {
             użytkownik może założyć konto i otrzymać zniżkę -25% na wybraną grę.
             Jest to symulacja działania internetowej wypożyczalni gier. Kod
             dotępny jest na moim{' '}
-            <a style={{ color: 'yellow' }} target="_blank" href="https://github.com/Hichahy/games-cv" rel="noreferrer">
+            <a style={{ color: '#ffc107' }} target="_blank" href="https://github.com/Hichahy/games-cv" rel="noreferrer">
             <i className="bi bi-github"></i> githubie
             </a>
           </p>

@@ -12,9 +12,11 @@ interface IProps {
 const Dashboard = ({ getLogout }: IProps) => {
   const [user, setUser] = useState<any>({});
 
-  onAuthStateChanged(auth, (currentUser: any) => {
-    setUser(currentUser);
-  });
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser: any) => {
+      setUser(currentUser);
+    });
+  }, [])
 
   const logout = () => {
     getLogout()

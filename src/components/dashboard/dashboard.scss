@@ -12,6 +12,7 @@
   background-size: 600% 400%;
   color: black;
   animation: gradient 16s ease infinite;
+  -webkit-animation: gradient 16s ease infinite;
   width: 18rem;
   border-radius: 30px;
   align-items: center;
@@ -57,6 +58,43 @@
   z-index: -1;
   background-size: 400% 400%;
   animation: gradient-neon 6s ease infinite;
+  -webkit-animation: gradient-neon 6s ease infinite;
+  -webkit-filter: blur(100px);
+
+}
+
+@media screen and (max-width: 830px) {
+  .dashboard-container {
+    min-height: 35rem;
+  }
+
+  .dasboard-cart {
+    animation: none;
+  }
+
+  .neon-gold {
+    display: none;
+  }
+}
+
+@-webkit-keyframes gradient-neon {
+  0% {
+    background-position: 0% 50%;
+    min-height: 24rem;
+    width: 18rem;
+  }
+
+  50% {
+    background-position: 100% 50%;
+    width: 23rem;
+    min-height: 29rem;
+  }
+
+  100% {
+    background-position: 0% 50%;
+    width: 18rem;
+    min-height: 24rem;
+  }
 }
 
 @keyframes gradient-neon {
@@ -89,6 +127,23 @@
   }
 
   100% {
+    background-position: 0% 50%;
+  }
+}
+
+@-webkit-keyframes gradient {
+  0% {
+    -webkit-background-position: 0% 50%;
+    background-position: 0% 50%;
+  }
+
+  50% {
+    -webkit-background-position: 100% 50%;
+    background-position: 100% 50%;
+  }
+
+  100% {
+    -webkit-background-position: 0% 50%;
     background-position: 0% 50%;
   }
 }

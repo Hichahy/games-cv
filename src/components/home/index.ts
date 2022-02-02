@@ -6,4 +6,4 @@ const mapStateToProps = (state: IStore) => ({
   mobileMode: state.rental.mobileMode
 })
 
-export default connect(mapStateToProps)(Home as any)
+export default connect(mapStateToProps, { })(Home as any)
