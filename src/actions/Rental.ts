@@ -17,10 +17,12 @@ import firebaseAxios from '../firebaseAxios';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase-config';
 
+const url :any = process.env.REACT_APP_FIREBASE_GET_DATA
+
 export const loadGames = () => async (dispatch: any) => {
   try {
     const res = await axios.get(
-      'https://games-rental-83316-default-rtdb.europe-west1.firebasedatabase.app/games.json'
+      url
     );
     dispatch({
       type: LOAD_GAME,
