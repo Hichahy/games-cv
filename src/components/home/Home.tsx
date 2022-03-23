@@ -1,5 +1,5 @@
 import './home.scss';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Carousel, Button, Modal } from 'react-bootstrap';
 
 interface IProps {
@@ -21,6 +21,12 @@ const Home = ({ mobileMode }: IProps) => {
     setShow(false);
     localStorage.setItem('alerted', 'yes');
   }
+
+  // onClick go to description
+  const myRef: any = useRef(null);
+  const executeScroll = () => {
+    myRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <div className="wrapper">
@@ -56,10 +62,10 @@ const Home = ({ mobileMode }: IProps) => {
         <div className="box-title">
           <h1 className="title">🦐Sajgonka</h1>
           <p>Wypożyczalnia sajgonka to symualcja wypożyczalni gier. </p>
-          <p style={{ color: 'rgb(255, 193, 7)', textShadow: '0 0 5px black' }}>Czytaj więcej ↓↓↓</p>
+          <p onClick={executeScroll} style={{ color: 'rgb(255, 193, 7)', textShadow: '0 0 5px black' }}>Czytaj więcej ↓↓↓</p>
         </div>
       </header>
-      <section className="description">
+      <section ref={myRef} className="description">
         <ul>
           <li>
             Wczytywyanie gier i logowanie odbywa się tu za pomocą firebase.
