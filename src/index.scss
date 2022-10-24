@@ -1,4 +1,5 @@
 @import "~bootstrap-icons/font/bootstrap-icons";
+@import "./variables/colorVariables.scss";
 
 body {
   margin: 0;
@@ -7,10 +8,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: black;
+  background-color: $backgroundColorPrimary;
   overflow-x: hidden;
   height: 100%;
-  // padding: 0;
 }
 
 code {

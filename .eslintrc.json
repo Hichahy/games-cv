@@ -26,8 +26,6 @@
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
-    "no-shadow": "off",
-    "@typescript-eslint/no-shadow": ["error"],
     "max-len": ["warn", { "code": 120 }],
     "react-hooks/rules-of-hooks": "off",
     "react-hooks/exhaustive-deps": "off",
