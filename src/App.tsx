@@ -1,14 +1,14 @@
-/* eslint-disable @typescript-eslint/no-shadow */
 import React, { useEffect, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { IStore } from './types/IStore';
+import { toggleMobileMode } from './actions/Rental';
+
 import Home from './components/home';
 import Navigation from './components/navigation';
 import Games from './components/games';
 import GameCart from './components/gameCart';
-import { IStore } from './types/IStore';
-import { toggleMobileMode } from './actions/Rental';
 import Footer from './components/footer';
 import RentCart from './components/rentCart';
 import Register from './components/register';
@@ -23,7 +23,7 @@ interface IProps {
 const App = ({ toggleMobileMode }: IProps) => {
   const [width, setWidth] = useState(window.innerWidth);
 
-  // mobile mode
+  // when mobile mode
   window.addEventListener('resize', () => setWidth(window.innerWidth));
   useEffect(() => {
     if (width < 765) {
@@ -45,16 +45,16 @@ const App = ({ toggleMobileMode }: IProps) => {
         <Row>
           <Navigation />
           <Routes>
-            <Route path="/" element={<Navigate replace to="/home" />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/games" element={<Games />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/" element={<PrivateRouter />}>
-              <Route path="/dashboard" element={<Dashboard />} />
+            <Route path='/' element={<Navigate replace to='/home' />} />
+            <Route path='/home' element={<Home />} />
+            <Route path='/games' element={<Games />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/' element={<PrivateRouter />}>
+              <Route path='/dashboard' element={<Dashboard />} />
             </Route>
-            <Route path="/game/:id" element={<GameCart />} />
-            <Route path="/rent/:id" element={<RentCart />} />
+            <Route path='/game/:id' element={<GameCart />} />
+            <Route path='/rent/:id' element={<RentCart />} />
           </Routes>
         </Row>
         <Footer />
