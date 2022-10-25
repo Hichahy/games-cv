@@ -4,6 +4,8 @@ import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { IStore } from './types/IStore';
 import { toggleMobileMode } from './actions/Rental';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebase-config';
 
 import Home from './components/home';
 import Navigation from './components/navigation';
@@ -22,6 +24,11 @@ interface IProps {
 
 const App = ({ toggleMobileMode }: IProps) => {
   const [width, setWidth] = useState(window.innerWidth);
+  const [user, setUser] = useState(null);
+
+  onAuthStateChanged(auth, (currentUser: any) => {
+    setUser(currentUser);
+  });
 
   // when mobile mode
   window.addEventListener('resize', () => setWidth(window.innerWidth));
@@ -43,7 +50,7 @@ const App = ({ toggleMobileMode }: IProps) => {
     <>
       <Container fluid>
         <Row>
-          <Navigation />
+          <Navigation user={user} />
           <Routes>
             <Route path='/' element={<Navigate replace to='/home' />} />
             <Route path='/home' element={<Home />} />
@@ -53,7 +60,7 @@ const App = ({ toggleMobileMode }: IProps) => {
             <Route path='/' element={<PrivateRouter />}>
               <Route path='/dashboard' element={<Dashboard />} />
             </Route>
-            <Route path='/game/:id' element={<GameCart />} />
+            <Route path='/game/:id' element={<GameCart user={user} />} />
             <Route path='/rent/:id' element={<RentCart />} />
           </Routes>
         </Row>

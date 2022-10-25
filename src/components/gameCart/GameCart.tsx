@@ -1,34 +1,29 @@
 import './gameCart.scss';
 import React, { useEffect, useState } from 'react';
-import {
-  Container,
-  Spinner,
-  Badge,
-  Breadcrumb,
-  Nav,
-  Carousel,
-  Button
-} from 'react-bootstrap';
+import { Container, Badge, Breadcrumb, Nav, Button } from 'react-bootstrap';
+import { v4 as uuidv4 } from 'uuid';
 import { useParams, Link } from 'react-router-dom';
 import { IGames } from '../../types/types';
 import { LinkContainer } from 'react-router-bootstrap';
-import { v4 as uuidv4 } from 'uuid';
-import { auth } from '../../firebase-config';
-import { onAuthStateChanged } from 'firebase/auth';
+import { SpinnerLoading } from '../layout/spinnerLoading';
+import { CartGameSlider } from '../layout/cartGameSlider';
 
 interface IProps {
   games: IGames[];
   mobileMode: boolean;
   loadGames: () => void;
+  user: null;
 }
 
-const GameCart = ({ games, mobileMode, loadGames }: IProps) => {
+const GameCart = ({ games, mobileMode, loadGames, user }: IProps) => {
   const [showScreen, setShowScreen] = useState(false);
-  const [user, setUser] = useState<any>({});
 
-  onAuthStateChanged(auth, (currentUser: any) => {
-    setUser(currentUser);
-  });
+  // again fetch becouse if refresh state is empy
+  useEffect(() => {
+    if (games.length < 1) {
+      loadGames();
+    }
+  }, []);
 
   useEffect(() => {
     if (mobileMode) {
@@ -36,7 +31,6 @@ const GameCart = ({ games, mobileMode, loadGames }: IProps) => {
     } else {
       setShowScreen(false);
     }
-    loadGames();
   }, [mobileMode]);
 
   const { id } = useParams();
@@ -51,118 +45,93 @@ const GameCart = ({ games, mobileMode, loadGames }: IProps) => {
     setShowScreen((prev) => !prev);
   };
 
-  if (games.length < 1) {
+  const ShowLogoPlatform = () => {
     return (
-      <div className="loading-box">
-        <Spinner
-          animation="border"
-          style={{ color: 'white', height: '7rem', width: '7rem' }}
-          role="status"
-        />
-        <span style={{ color: 'white' }}>Loading</span>
+      <div>
+        {game.platform.includes('PlayStation 4')
+          ? (
+          <i className='bi bi-playstation'></i>
+            )
+          : null}
+        {game.platform.includes('xbox') ? <i className='bi bi-xbox'></i> : null}
+        {game.platform.includes('windows')
+          ? (
+          <i className='bi bi-windows'></i>
+            )
+          : null}
       </div>
     );
+  };
+
+  if (games.length < 1) {
+    return <SpinnerLoading />;
   }
 
   return (
-    <Container fluid className="container-cart">
-      <Breadcrumb className="breadcrumb">
-        <LinkContainer to="/games">
+    <Container fluid className='container-cart'>
+      <Breadcrumb>
+        <LinkContainer to='/games'>
           <Nav.Link>Gry</Nav.Link>
         </LinkContainer>
-        <span style={{ color: 'white' }}>/</span>
+        <span>/</span>
         <Breadcrumb.Item style={{ marginLeft: '10px' }} active>
           {game.name}
         </Breadcrumb.Item>
       </Breadcrumb>
-      <section className="cart-section1">
-        <div className="cart-box1">
-          <img className="image-cart" src={game.image} alt="Card image" />
+      <section className='game-card-section-1'>
+        <div>
+          <img src={game.image} alt='Card image' />
         </div>
-        <div className="cart-box2">
+        <div>
           <h1>{game.name}</h1>
           <p>{game.description}</p>
           <div>
             <h4>Platforma</h4>
-            <div>
-              {game.platform.includes('PlayStation 4')
-                ? (
-                <i className="bi bi-playstation"></i>
-                  )
-                : null}
-              {game.platform.includes('xbox')
-                ? (
-                <i className="bi bi-xbox"></i>
-                  )
-                : null}
-              {game.platform.includes('windows')
-                ? (
-                <i className="bi bi-windows"></i>
-                  )
-                : null}
-            </div>
+            <ShowLogoPlatform />
           </div>
           <div>
             <h4>Gatunek</h4>
             {game.type.map((i) => (
-              <Badge key={uuidv4()} pill bg="warning" text="dark">
+              <Badge key={uuidv4()} pill bg='warning' text='dark'>
                 {i}
               </Badge>
             ))}
           </div>
         </div>
       </section>
-      <section className="screen-pc">
-        <img
-          onClick={showScreenHandler}
-          src={game.screenShot1}
-          alt="First slide"
-        />
-        <img
-          onClick={showScreenHandler}
-          src={game.screenShot2}
-          alt="Second slide"
-        />
-        <img
-          onClick={showScreenHandler}
-          src={game.screenShot3}
-          alt="Third slide"
-        />
+      <section className='game-card-section-2'>
+        {game.screens.map((i) => (
+          <img
+            key={uuidv4()}
+            onClick={showScreenHandler}
+            src={i}
+            alt='screen gameplay'
+          />
+        ))}
       </section>
       {showScreen
         ? (
-        <>
-          <Carousel className="show-slider">
-            <Carousel.Item>
-              <img src={game.screenShot1} alt="First slide" />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img src={game.screenShot2} alt="Second slide" />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img src={game.screenShot3} alt="Third slide" />
-            </Carousel.Item>
-          </Carousel>
-          <div className="overlay" onClick={showScreenHandler}></div>
-        </>
+        <CartGameSlider showScreenHandler={showScreenHandler} game={game} />
           )
         : null}
-      <section className="reckoning">
+      <section className='game-card-section-3'>
         <div>
-          <i className="bi bi-cash-coin"></i>
+          <i className='bi bi-cash-coin'></i>
           {user
             ? (
-            <span>
-              <p style={{ textDecoration: 'line-through' }}>{game.price}</p>{' '}
-              {((25 / 100) * game.price).toFixed(2)} ¥ za dzień
-            </span>
+            <p>
+              <span>
+                {game.price}
+              </span>
+              {((75 / 100) * game.price).toFixed(2)} ¥ za dzień
+            </p>
               )
             : (
-            <span>{game.price.toFixed(2)}¥ za dzień</span>
+            <p>{game.price.toFixed(2)}¥ za dzień</p>
               )}
         </div>
         <Link to={`/rent/${game.id}`}>
-          <Button variant="warning">rezerwuj teraz!</Button>{' '}
+          <Button variant='warning'>rezerwuj teraz!</Button>
         </Link>
       </section>
     </Container>
