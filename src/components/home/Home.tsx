@@ -63,7 +63,7 @@ const Home = ({ mobileMode }: IProps) => {
           className='introduce-fg'
         />
         <div>
-          <h1>🦐 {T.companyName}</h1>
+          <h1>{T.companyName}</h1>
           <p>{T.introduceCompany}</p>
           <p onClick={executeScroll}>Czytaj więcej ↓↓↓</p>
         </div>

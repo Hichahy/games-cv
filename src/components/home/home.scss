@@ -60,6 +60,10 @@
   }
 }
 
+.modal-dialog {
+  color: black;
+}
+
 .home-container::-webkit-scrollbar {
   display: none;
 }
@@ -105,8 +109,12 @@
       padding: 0;
     }
 
-    h1 {
-      font-size: 3rem;
+    header {
+      div {
+        h1 {
+          font-size: 3rem;
+        }
+      }
     }
   }
 }
