@@ -1,4 +1,4 @@
-.account-container {
+.register-container {
   min-height: 93vh;
   padding-top: 6rem;
   background-size: 100% 100%;
@@ -16,7 +16,6 @@
 .input-box-register {
   padding: 0;
   width: 50%;
-  color: white;
   background-color: black;
   display: flex;
   justify-content: center;
@@ -46,8 +45,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
-  background-color: black;
   padding: 0;
   width: 50%;
   background-image: url("../../../public//image/register/register.jpg");
@@ -56,11 +53,16 @@
   object-fit: cover;
   height: 100%;
 
+  div {
+    padding: 10%;
+    width: 100%;
+  }
+
   h1 {
     font-family: "Bebas Neue", cursive;
   }
 
-  .mobile-info {
+  span {
     display: none;
   }
 }
@@ -72,7 +74,7 @@
 }
 
 @media screen and (max-width: 830px) {
-  .account-container {
+  .register-container {
     height: auto;
     padding: 35px;
   }
@@ -106,7 +108,7 @@
     width: 100%;
     min-height: 92vh;
 
-    .mobile-info {
+    span {
       display: block;
     }
   }

@@ -7,6 +7,7 @@ import { IGames } from '../../types/types';
 import { LinkContainer } from 'react-router-bootstrap';
 import { SpinnerLoading } from '../layout/spinnerLoading';
 import { CartGameSlider } from '../layout/cartGameSlider';
+import { IconsPlatform } from '../layout/iconsPlatform';
 
 interface IProps {
   games: IGames[];
@@ -45,24 +46,6 @@ const GameCart = ({ games, mobileMode, loadGames, user }: IProps) => {
     setShowScreen((prev) => !prev);
   };
 
-  const ShowLogoPlatform = () => {
-    return (
-      <div>
-        {game.platform.includes('PlayStation 4')
-          ? (
-          <i className='bi bi-playstation'></i>
-            )
-          : null}
-        {game.platform.includes('xbox') ? <i className='bi bi-xbox'></i> : null}
-        {game.platform.includes('windows')
-          ? (
-          <i className='bi bi-windows'></i>
-            )
-          : null}
-      </div>
-    );
-  };
-
   if (games.length < 1) {
     return <SpinnerLoading />;
   }
@@ -87,7 +70,7 @@ const GameCart = ({ games, mobileMode, loadGames, user }: IProps) => {
           <p>{game.description}</p>
           <div>
             <h4>Platforma</h4>
-            <ShowLogoPlatform />
+            <IconsPlatform game={game}/>
           </div>
           <div>
             <h4>Gatunek</h4>

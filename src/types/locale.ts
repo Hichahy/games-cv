@@ -3,4 +3,5 @@ export type Dictionary = {
   introduceCompany: string;
   skills: string;
   cookieDescription: string;
+  aboutUs: string;
 };

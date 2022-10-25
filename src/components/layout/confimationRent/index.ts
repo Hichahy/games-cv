@@ -1,0 +1,1 @@
+export { ConfirmationRent } from './ConfirmationRent';
