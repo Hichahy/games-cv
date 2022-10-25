@@ -160,19 +160,6 @@
   animation: shake-vertical 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
 }
 
-.complete-side-hide {
-  display: none;
-}
-
-.complete-side {
-  color: white;
-  font-family: "Bebas Neue", cursive;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
-}
-
 .giphy-embed {
   width: 23rem;
   height: 22rem;

@@ -11,20 +11,24 @@ import {
   Spinner,
   Nav
 } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
-import {
-  createUserWithEmailAndPassword,
-  onAuthStateChanged
-} from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase-config';
+import { LinkContainer } from 'react-router-bootstrap';
 
 interface IProps {
-  mobileMode: boolean;
+  user: null;
 }
 
-const Register = ({ mobileMode }: IProps) => {
+interface IErrors {
+  password?: string;
+  email?: string;
+  confirmPassword?: string;
+  check?: boolean | string;
+}
+
+const Register = ({ user }: IProps) => {
   const [registerSubmit, setRegisterSubmit] = useState(false);
-  const [errors, setErrors] = useState<any>({});
+  const [errors, setErrors] = useState<IErrors>({});
   const [registerError, setRegisterError] = useState('');
   const [loading, setLoading] = useState(false);
   const [registerForm, setRegisterForm] = useState({
@@ -34,15 +38,9 @@ const Register = ({ mobileMode }: IProps) => {
   });
   const [confirmation, setConfirmation] = useState(false);
   const [triger, setTriger] = useState(false);
-  const [user, setUser] = useState(null);
-
-  // set state user when auth changed
-  onAuthStateChanged(auth, (currentUser: any) => {
-    setUser(currentUser);
-  });
 
   const handleValidation = () => {
-    const errors: any = {};
+    const errors: IErrors = {};
 
     if (!registerForm.email) {
       errors.email = 'Wymagany email';
@@ -73,12 +71,12 @@ const Register = ({ mobileMode }: IProps) => {
     return errors;
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     setRegisterError('');
     setRegisterSubmit(true);
     setErrors(handleValidation());
-    setTriger(!triger);
+    setTriger(prev => !prev);
   };
 
   const handleRegisterForm = (e: {
@@ -102,6 +100,7 @@ const Register = ({ mobileMode }: IProps) => {
     setRegisterSubmit(false);
     setRegisterError('');
   };
+
   // safeguard against the clicker post infinte
   useEffect(() => {
     if (registerError !== '') {
@@ -138,24 +137,17 @@ const Register = ({ mobileMode }: IProps) => {
     myRef.current.scrollIntoView();
   };
 
-  // if error scroll to him
-  useEffect(() => {
-    if (mobileMode && Object.keys(errors).length > 0) {
-      myRef.current.scrollIntoView();
-    }
-  }, [triger]);
-
   return (
-    <Container className="account-container">
+    <Container className="register-container">
       <Col className="neon"></Col>
       <Row className="account-box">
         <Col className="advertisement-box-register">
-          <Col style={{ padding: '10%', width: '100%' }}>
+          <Col>
             <h1>Witaj w Rejestracji</h1>
             <p>Dołącz do nas i zyskaj 25% zniżki na każdą pożyczoną grę 💰</p>
-            <p onClick={executeScroll} className="mobile-info">
+            <span onClick={executeScroll}>
               Zjedź w dół <i className="bi bi-chevron-double-down"></i>
-            </p>
+            </span>
           </Col>
         </Col>
         <Col ref={myRef} className="input-box-register">

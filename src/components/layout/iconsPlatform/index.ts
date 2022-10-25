@@ -1,0 +1,1 @@
+export { IconsPlatform } from './IconsPlatform';

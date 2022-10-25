@@ -1,30 +1,44 @@
+@import '../../variables/colorVariables.scss/';
+
+.login-container {
+  min-height: 93vh;
+  padding-top: 6rem;
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .advertisement-box-login {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
   background-color: black;
   padding: 0;
   width: 50%;
-  background-image: url("../../../public//image/login/login.jpg");
+  background-image: url('../../../public//image/login/login.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   object-fit: cover;
   height: 100%;
 
-  h1 {
-    font-family: "Bebas Neue", cursive;
+  div {
+    padding: 10%;
+    width: 100%;
   }
 
-  .mobile-info {
+  h1 {
+    font-family: 'Bebas Neue', cursive;
+  }
+
+  span {
     display: none;
   }
 }
 
-.input-box-login {
+.form-box-login {
   padding: 0;
   width: 50%;
-  color: white;
   background-color: black;
   display: flex;
   justify-content: center;
@@ -44,7 +58,7 @@
   }
 
   button {
-    font-family: "Bebas Neue", cursive;
+    font-family: 'Bebas Neue', cursive;
     letter-spacing: 7px;
     min-height: fit-content;
   }
@@ -53,7 +67,7 @@
 .neon-yellow {
   width: 65rem;
   height: 40rem;
-  background-color: rgb(255, 217, 0);
+  background-color: $InfoFontColor;
   position: absolute;
   filter: blur(100px);
   z-index: -1;
@@ -61,12 +75,18 @@
 }
 
 @media screen and (max-width: 830px) {
+  .login-container {
+    height: auto;
+    padding: 35px;
+  }
+
   .advertisement-box-login {
     width: 100%;
     min-height: 92vh;
 
-    .mobile-info {
+    span {
       display: block;
+      cursor: pointer;
     }
   }
 
@@ -74,7 +94,7 @@
     display: none;
   }
 
-  .input-box-login {
+  .form-box-login {
     width: 100%;
     min-height: 30vh;
 

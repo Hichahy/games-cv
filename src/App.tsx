@@ -55,8 +55,8 @@ const App = ({ toggleMobileMode }: IProps) => {
             <Route path='/' element={<Navigate replace to='/home' />} />
             <Route path='/home' element={<Home />} />
             <Route path='/games' element={<Games />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register user={user} />} />
+            <Route path='/login' element={<Login user={user} />} />
             <Route path='/' element={<PrivateRouter />}>
               <Route path='/dashboard' element={<Dashboard />} />
             </Route>
