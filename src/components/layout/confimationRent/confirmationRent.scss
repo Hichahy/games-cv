@@ -1,0 +1,79 @@
+@import '../../../variables/colorVariables.scss';
+
+.confirmation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+
+  tr {
+    border: $tableColor;
+  }
+
+  h1 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-family: 'Bebas Neue', cursive;
+  }
+
+  .confirmation-img-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 20px 0;
+    width: 100%;
+
+    img {
+      width: 15%;
+    }
+
+    h4 {
+      margin-left: 20px;
+      font-family: 'Bebas Neue', cursive;
+    }
+  }
+
+  .table {
+    color: $greyText;
+  }
+
+  .badge {
+    margin-bottom: 20px;
+  }
+
+  .confirmation-btn-box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    button {
+      width: 48%;
+      font-family: 'Bebas Neue', cursive;
+      letter-spacing: 7px;
+    }
+  }
+}
+
+@media (max-width: 830px) {
+  .confirmation-container {
+    h1 {
+      display: flex;
+      justify-content: center;
+    }
+
+    .confirmation-img-box {
+      justify-content: space-between;
+      border: none;
+
+      img {
+        width: 45%;
+      }
+    }
+
+    .confirmation-btn-box {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

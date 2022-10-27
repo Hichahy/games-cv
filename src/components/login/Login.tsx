@@ -13,19 +13,15 @@ import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase-config';
 import { LinkContainer } from 'react-router-bootstrap';
+import { handleValidationLogin } from '../validation';
 
 interface IProps {
   user: null;
 }
 
-interface IErrors {
-  password?: string;
-  email?: string;
-}
-
 const Login = ({ user }: IProps) => {
   const [loginSubmit, setLoginSubmit] = useState(false);
-  const [errors, setErrors] = useState<IErrors>({});
+  const [errors, setErrors] = useState('');
   const [loginError, setLoginError] = useState('');
   const [loading, setLoading] = useState(false);
   const [loginForm, setLoginForm] = useState({
@@ -34,37 +30,11 @@ const Login = ({ user }: IProps) => {
   });
   const [triger, setTriger] = useState(false);
 
-  const handleValidation = () => {
-    const errors: IErrors = {};
-
-    if (!loginForm.email) {
-      errors.email = 'Wymagany email';
-    } else if (!/\S+@\S+\.\S+/.test(loginForm.email)) {
-      errors.email = 'Hmm… to nie wygląda jak adres e-mail.';
-    } else if (loginError === 'auth/internal-error') {
-      errors.email = 'Niepoprawny email lub hasło';
-    } else if (loginError === 'auth/user-not-found') {
-      errors.email = 'Nie znaleziono takiego użytkownika';
-    }
-
-    if (!loginForm.password) {
-      errors.password = 'Wymagane hasło';
-    } else if (loginForm.password.length < 6) {
-      errors.password = 'Hasło jest zbyt krótkie';
-    } else if (loginError === 'auth/wrong-password') {
-      errors.password = 'Nieprawidłowe hasło ';
-    } else if (loginError === 'auth/too-many-requests') {
-      errors.password = 'Podjąłes zbyt dużo prób spróbuj ponownie później';
-    }
-
-    return errors;
-  };
-
   const hadnleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoginError('');
     setLoginSubmit(true);
-    setErrors(handleValidation());
+    handleValidationLogin(setErrors, loginForm, loginError);
     setTriger((prev) => !prev);
   };
 
@@ -87,16 +57,15 @@ const Login = ({ user }: IProps) => {
   // safeguard against the clicker post infinte
   useEffect(() => {
     if (loginError !== '') {
-      setErrors(handleValidation());
+      handleValidationLogin(setErrors, loginForm, loginError);
       loginForm.email = '';
       loginForm.password = '';
     }
   }, [loginError]);
 
   useEffect(() => {
-    if (Object.keys(errors).length === 0 && loginSubmit === true) {
+    if (errors === '' && loginSubmit === true) {
       login();
-      setErrors(handleValidation());
     }
   }, [triger]);
 
@@ -144,14 +113,14 @@ const Login = ({ user }: IProps) => {
               )
             : (
             <Form onSubmit={hadnleSubmit}>
-              {errors.email || errors.password
-                ? (
+                 {errors !== ''
+                   ? (
                 <Form.Label className='error-rent'>
                   <i className='bi bi-exclamation-triangle'></i>
-                  {errors.email ? errors.email : errors.password}
+                  <span>{errors}</span>
                 </Form.Label>
-                  )
-                : null}
+                     )
+                   : null}
               <Form.Group>
                 <Form.Label>email:</Form.Label>
                 <Form.Control
