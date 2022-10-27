@@ -1,0 +1,49 @@
+.slider-game-cart {
+  width: 60vw;
+  height: 30vw;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+
+  img {
+    height: 30vw;
+    width: 100%;
+  }
+}
+
+.overlay {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+@media (max-width: 765px) {
+  .slider-game-cart {
+    width: 100%;
+    height: 50vw;
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: unset;
+    z-index: 0;
+
+    img {
+      width: 100%;
+      height: 50vw;
+    }
+  }
+
+  .overlay {
+    display: none;
+  }
+}

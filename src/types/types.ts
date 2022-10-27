@@ -20,3 +20,23 @@ export interface IOrders {
   gameName: string;
   price: string;
 }
+
+export interface IRentForm {
+  name: string;
+  surname: string;
+  email: string;
+  adress: string;
+  date: string;
+  age: number;
+}
+
+export interface ILoginForm {
+  email: string;
+  password: string;
+}
+
+export interface IRegisterForm {
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
