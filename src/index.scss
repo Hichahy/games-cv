@@ -18,3 +18,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.neon {
+  width: 65rem;
+  height: 40rem;
+  background-color: $neonFirstColor;
+  position: absolute;
+  filter: blur(100px);
+  z-index: -1;
+  animation: flicker-3 10s linear infinite both;
+}
+
+.neon-green {
+  width: 65rem;
+  height: 40rem;
+  background-color: $neonSecoundColor;
+  position: absolute;
+  filter: blur(100px);
+  z-index: -1;
+  animation: flicker-3 10s linear infinite both;
+}

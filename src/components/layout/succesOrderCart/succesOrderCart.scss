@@ -1,11 +1,24 @@
-.complete-side-hide {
-  display: none;
-}
-
-.complete-side {
-  font-family: "Bebas Neue", cursive;
+.succes-rent-container {
+  font-family: 'Bebas Neue', cursive;
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
+
+  p {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.giphy-embed {
+  width: 23rem;
+  height: 22rem;
+}
+
+@media (max-width: 830px) {
+  .giphy-embed {
+    width: 12rem;
+    height: 13rem;
+  }
 }

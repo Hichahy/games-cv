@@ -1,32 +1,25 @@
 import React from 'react';
 import { Badge, Button, Col, Image, Table } from 'react-bootstrap';
 import { IOrders } from '../../../types/types';
+import './confirmationRent.scss'
 
 interface IProps {
   game: any;
-  rentConfirmation: boolean;
-  rentComplete: boolean;
   userForm: IOrders;
-  totalCash: string;
+  amountPrice: string;
   sendOrderHandle: () => void;
   setRentConfirmation: (value: boolean) => void;
 }
 
 export const ConfirmationRent = ({
   game,
-  rentConfirmation,
-  rentComplete,
-  totalCash,
+  amountPrice,
   userForm,
   sendOrderHandle,
   setRentConfirmation
 }: IProps) => {
   return (
-    <Col
-      className={`${
-        rentConfirmation && !rentComplete ? 'back-side' : 'back-side-hide'
-      }`}
-    >
+    <Col className='confirmation-container'>
       <h1>Czy wszystko się zgadza?</h1>
       <div className='confirmation-img-box'>
         <Image src={game.image} alt={`${game.name} cover`}></Image>
@@ -57,7 +50,7 @@ export const ConfirmationRent = ({
         </tbody>
       </Table>
       <Badge bg='warning' text='dark'>
-        total:{totalCash}¥
+        total:{amountPrice}¥
       </Badge>
       <div className='confirmation-btn-box'>
         <Button onClick={() => setRentConfirmation(false)} variant='danger'>

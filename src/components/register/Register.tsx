@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-shadow */
 import './register.scss';
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -14,21 +13,15 @@ import {
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase-config';
 import { LinkContainer } from 'react-router-bootstrap';
+import { handleValidationRegister } from '../validation'
 
 interface IProps {
   user: null;
 }
 
-interface IErrors {
-  password?: string;
-  email?: string;
-  confirmPassword?: string;
-  check?: boolean | string;
-}
-
 const Register = ({ user }: IProps) => {
   const [registerSubmit, setRegisterSubmit] = useState(false);
-  const [errors, setErrors] = useState<IErrors>({});
+  const [errors, setErrors] = useState('');
   const [registerError, setRegisterError] = useState('');
   const [loading, setLoading] = useState(false);
   const [registerForm, setRegisterForm] = useState({
@@ -39,44 +32,12 @@ const Register = ({ user }: IProps) => {
   const [confirmation, setConfirmation] = useState(false);
   const [triger, setTriger] = useState(false);
 
-  const handleValidation = () => {
-    const errors: IErrors = {};
-
-    if (!registerForm.email) {
-      errors.email = 'Wymagany email';
-    } else if (!/\S+@\S+\.\S+/.test(registerForm.email)) {
-      errors.email = 'Hmm… to nie wygląda jak adres e-mail';
-    } else if (registerError === 'auth/email-already-in-use') {
-      errors.email = 'Ten email jest już zajęty';
-    }
-
-    if (!registerForm.password) {
-      errors.password = 'Wymagane hasło';
-    } else if (registerForm.password.length < 6) {
-      errors.password = 'Hasło jest zbyt krótkie';
-    }
-
-    if (!registerForm.confirmPassword) {
-      errors.confirmPassword = 'Wymagane powtórzenie hasła';
-    } else if (registerForm.confirmPassword.length < 6) {
-      errors.confirmPassword = 'Hasło jest zbyt krótkie';
-    } else if (registerForm.confirmPassword !== registerForm.password) {
-      errors.confirmPassword = 'Hasła do siebie nie pasują';
-    }
-
-    if (confirmation === false) {
-      errors.check = 'Wymagana zgoda';
-    }
-
-    return errors;
-  };
-
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     setRegisterError('');
     setRegisterSubmit(true);
-    setErrors(handleValidation());
-    setTriger(prev => !prev);
+    handleValidationRegister(setErrors, registerForm, registerError, confirmation);
+    setTriger((prev) => !prev);
   };
 
   const handleRegisterForm = (e: {
@@ -104,7 +65,7 @@ const Register = ({ user }: IProps) => {
   // safeguard against the clicker post infinte
   useEffect(() => {
     if (registerError !== '') {
-      setErrors(handleValidation());
+      handleValidationRegister(setErrors, registerForm, registerError, confirmation);
       registerForm.email = '';
       registerForm.password = '';
       registerForm.confirmPassword = '';
@@ -113,11 +74,12 @@ const Register = ({ user }: IProps) => {
   }, [registerError]);
 
   useEffect(() => {
-    if (Object.keys(errors).length === 0 && registerSubmit === true) {
+    if (errors === '' && registerSubmit === true) {
       register();
-      setErrors(handleValidation());
     }
   }, [triger]);
+
+  console.log(errors);
 
   // when login navigate to dashboard
   const navigate = useNavigate();
@@ -138,48 +100,39 @@ const Register = ({ user }: IProps) => {
   };
 
   return (
-    <Container className="register-container">
-      <Col className="neon"></Col>
-      <Row className="account-box">
-        <Col className="advertisement-box-register">
+    <Container className='register-container'>
+      <Col className='neon'></Col>
+      <Row className='account-box'>
+        <Col className='advertisement-box-register'>
           <Col>
             <h1>Witaj w Rejestracji</h1>
             <p>Dołącz do nas i zyskaj 25% zniżki na każdą pożyczoną grę 💰</p>
             <span onClick={executeScroll}>
-              Zjedź w dół <i className="bi bi-chevron-double-down"></i>
+              Zjedź w dół <i className='bi bi-chevron-double-down'></i>
             </span>
           </Col>
         </Col>
-        <Col ref={myRef} className="input-box-register">
+        <Col ref={myRef} className='input-box-register'>
           {loading
             ? (
-            <Spinner animation="grow" variant="light" />
+            <Spinner animation='grow' variant='light' />
               )
             : (
             <Form onSubmit={handleSubmit}>
-              {errors.email ||
-              errors.password ||
-              errors.confirmPassword ||
-              errors.check
+              {errors !== ''
                 ? (
-                <Form.Label className="error-rent">
-                  <i className="bi bi-exclamation-triangle"></i>
-                  {errors.email
-                    ? errors.email
-                    : errors.password
-                      ? errors.password
-                      : errors.confirmPassword
-                        ? errors.confirmPassword
-                        : errors.check}
+                <Form.Label className='error-rent'>
+                  <i className='bi bi-exclamation-triangle'></i>
+                  <span>{errors}</span>
                 </Form.Label>
                   )
                 : null}
               <Form.Group>
                 <Form.Label>email:</Form.Label>
                 <Form.Control
-                  type="email"
-                  name="email"
-                  placeholder="Email"
+                  type='email'
+                  name='email'
+                  placeholder='Email'
                   onChange={handleRegisterForm}
                   value={registerForm.email}
                 />
@@ -187,9 +140,9 @@ const Register = ({ user }: IProps) => {
               <Form.Group>
                 <Form.Label>Hasło:</Form.Label>
                 <Form.Control
-                  type="password"
-                  name="password"
-                  placeholder="Hasło"
+                  type='password'
+                  name='password'
+                  placeholder='Hasło'
                   onChange={handleRegisterForm}
                   value={registerForm.password}
                 />
@@ -197,21 +150,21 @@ const Register = ({ user }: IProps) => {
               <Form.Group>
                 <Form.Label>Powtórz hasło:</Form.Label>
                 <Form.Control
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Powtórz hasło"
+                  type='password'
+                  name='confirmPassword'
+                  placeholder='Powtórz hasło'
                   onChange={handleRegisterForm}
                   value={registerForm.confirmPassword}
                 />
               </Form.Group>
-              <Form.Group className="mb-3">
+              <Form.Group className='mb-3'>
                 <Form.Check
-                  type="checkbox"
-                  label="Zgadzam się na wszystko"
+                  type='checkbox'
+                  label='Zgadzam się na wszystko'
                   onClick={() => setConfirmation(!confirmation)}
                 />
               </Form.Group>
-              <Button type="submit" variant="primary">
+              <Button type='submit' variant='primary'>
                 Rejestracja
               </Button>
             </Form>
@@ -219,7 +172,7 @@ const Register = ({ user }: IProps) => {
           {loading
             ? null
             : (
-            <LinkContainer to="/login">
+            <LinkContainer to='/login'>
               <Nav.Link>Masz już konto?</Nav.Link>
             </LinkContainer>
               )}

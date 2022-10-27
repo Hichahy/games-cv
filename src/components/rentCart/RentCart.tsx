@@ -28,24 +28,14 @@ interface IProps {
 }
 
 const rentCart = ({ games, loadGames, sendData, mobileMode }: IProps) => {
-  // Pharams game
-  const { id } = useParams();
-  const find = () => {
-    return games.find((x) => x.id === id);
-  };
-  const game = find()!;
-  // Pharams game //
-
   const [totalPrice, setTotalPrice] = useState({
     d2: '',
     rentDays: 0
   });
-
   const [totalAnimation, setTotalAnimation] = useState(false);
   const [rentConfirmation, setRentConfirmation] = useState(false);
   const [rentComplete, setRentComplete] = useState(false);
-
-  // copy rentForm state from RentForm low component
+  const [amountPrice, setAmountPrice] = useState<string>('0');
   const [userForm, setUserForm] = useState({
     name: '',
     surname: '',
@@ -58,29 +48,41 @@ const rentCart = ({ games, loadGames, sendData, mobileMode }: IProps) => {
   });
   const [user, setUser] = useState<any>({});
 
+  // Pharams game
+  const { id } = useParams();
+  const find = () => {
+    return games.find((x) => x.id === id);
+  };
+  const game = find()!;
+
   onAuthStateChanged(auth, (currentUser: any) => {
     setUser(currentUser);
   });
 
   useEffect(() => {
-    loadGames();
-  }, [loadGames]);
+    if (games.length < 1) {
+      loadGames()
+    }
+  }, []);
 
   // -25 % for useres
-  const totalCash = user
-    ? ((75 / 100) * game.price * totalPrice.rentDays).toFixed(2)
-    : (game.price * totalPrice.rentDays).toFixed(2);
+  useEffect(() => {
+    const pricePromotion = game && ((75 / 100) * game.price * totalPrice.rentDays).toFixed(2);
+    const normalPrice = game && (game.price * totalPrice.rentDays).toFixed(2);
+    if (user) {
+      setAmountPrice(pricePromotion)
+    } else {
+      setAmountPrice(normalPrice)
+    }
+  }, [totalPrice, game])
 
   const sendOrderHandle = () => {
     sendData(userForm);
     setRentComplete(true);
   };
 
-  // loading
   if (games.length < 1) {
-    return (
-     <SpinnerLoading />
-    );
+    return <SpinnerLoading />;
   }
 
   return (
@@ -105,7 +107,7 @@ const rentCart = ({ games, loadGames, sendData, mobileMode }: IProps) => {
                 text='dark'
                 className={`total ${totalAnimation ? 'total-boom' : ''}`}
               >
-                total:{totalCash}¥
+                total:{amountPrice}¥
               </Badge>
               <div className='icon-box'>
                 <IconsPlatform game={game} />
@@ -116,7 +118,7 @@ const rentCart = ({ games, loadGames, sendData, mobileMode }: IProps) => {
               setTotalPrice={setTotalPrice}
               setRentConfirmation={setRentConfirmation}
               setUserForm={setUserForm}
-              totalCash={totalCash}
+              amountPrice={amountPrice}
               totalAnimation={totalAnimation}
               idGame={game.id}
               gameName={game.name}
@@ -124,20 +126,26 @@ const rentCart = ({ games, loadGames, sendData, mobileMode }: IProps) => {
             />
           </Col>
         </Col>
-        <ConfirmationRent
-          game={game}
-          rentConfirmation={rentConfirmation}
-          rentComplete={rentComplete}
-          sendOrderHandle={sendOrderHandle}
-          setRentConfirmation={setRentConfirmation}
-          userForm={userForm}
-          totalCash={totalCash}
-        />
-        <SuccesOrderCart
-          rentComplete={rentComplete}
-          mobileMode={mobileMode}
-          setRentComplete={setRentComplete}
-        />
+        {rentConfirmation && !rentComplete
+          ? (
+          <ConfirmationRent
+            game={game}
+            sendOrderHandle={sendOrderHandle}
+            setRentConfirmation={setRentConfirmation}
+            userForm={userForm}
+            amountPrice={amountPrice}
+          />
+            )
+          : null}
+        {rentComplete
+          ? (
+          <SuccesOrderCart
+            rentComplete={rentComplete}
+            mobileMode={mobileMode}
+            setRentComplete={setRentComplete}
+          />
+            )
+          : null}
       </Row>
     </Container>
   );

@@ -38,14 +38,14 @@ export const SuccesOrderCart = ({ rentComplete, mobileMode, setRentComplete }: I
   }, [counter, rentComplete]);
 
   return (
-    <Col className={`${rentComplete ? 'complete-side' : 'complete-side-hide'}`}>
+    <Col className='succes-rent-container'>
       <h1>Świetnie udało się! Miłego grania!</h1>
       <img
         // eslint-disable-next-line max-len
         src='https://media4.giphy.com/media/wbKYK0Mgnb3TBjNBOQ/giphy.gif?cid=ecf05e47ahfddm3prp2bvdg1i9nw1yafjy7wbira87tlhbeq&rid=giphy.gif&ct=s'
         className='giphy-embed'
       ></img>
-      <p style={{ display: 'flex', flexWrap: 'wrap' }}>
+      <p>
         (Zostaniesz przekierowany na strone główną za{' '}
         <span className='counter'>{counter}</span> sek)
       </p>
