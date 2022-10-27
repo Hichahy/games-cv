@@ -2,6 +2,7 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Carousel } from 'react-bootstrap';
 import { IGames } from '../../../types/types';
+import './cartGameSlider.scss'
 
 interface IProps {
   game: IGames;

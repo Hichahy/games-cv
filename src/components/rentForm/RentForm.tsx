@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable @typescript-eslint/no-shadow */
 import './rentForm.scss';
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Form, FormControl, Button, Badge } from 'react-bootstrap';
@@ -7,15 +5,15 @@ import { IOrders } from '../../types/types';
 import { handleValidationRent } from '../validation'
 
 interface IProps {
-  setTotalAnimation: React.Dispatch<React.SetStateAction<boolean>>;
+  setTotalAnimation: (value: boolean) => void;
   setTotalPrice: React.Dispatch<
-    React.SetStateAction<{
-      d2: string;
-      rentDays: number;
-    }>
-  >;
-  setRentConfirmation: React.Dispatch<React.SetStateAction<boolean>>;
-  setUserForm: React.Dispatch<React.SetStateAction<IOrders>>;
+  React.SetStateAction<{
+    d2: string;
+    rentDays: number;
+  }>
+>;
+  setRentConfirmation: (value: boolean) => void
+  setUserForm: (value: IOrders) => void;
   amountPrice: string;
   totalAnimation: boolean;
   idGame: string;
@@ -74,7 +72,7 @@ const rentForm = ({
     return new Date(mdy[2], mdy[0] - 1, mdy[1]);
   }
 
-  function datediff (d1: any, d2: any) {
+  function datediff (d1: number | any, d2: number | any) {
     return Math.round((d2 - d1) / (1000 * 60 * 60 * 24));
   }
 

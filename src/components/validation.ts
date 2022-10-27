@@ -1,22 +1,4 @@
-interface IRentForm {
-    name: string;
-    surname: string;
-    email: string;
-    adress: string;
-    date: string;
-    age: number;
-}
-
-interface ILogin {
-    email: string;
-    password: string;
-}
-
-interface IRegister {
-email: string;
-password: string;
-confirmPassword: string;
-}
+import { IRentForm, ILoginForm, IRegisterForm } from '../types/types'
 
 export const handleValidationRent = (
   rentForm: IRentForm,
@@ -53,7 +35,7 @@ export const handleValidationRent = (
 
 export const handleValidationRegister = (
   error: (value: string) => void,
-  registerForm: IRegister,
+  registerForm: IRegisterForm,
   registerError: string,
   confirmation: boolean
 ) => {
@@ -82,7 +64,7 @@ export const handleValidationRegister = (
 
 export const handleValidationLogin = (
   error: (value: string) => void,
-  loginForm: ILogin,
+  loginForm: ILoginForm,
   loginError: string
 ) => {
   if (!loginForm.email) {

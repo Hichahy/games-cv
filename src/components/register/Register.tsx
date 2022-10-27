@@ -79,8 +79,6 @@ const Register = ({ user }: IProps) => {
     }
   }, [triger]);
 
-  console.log(errors);
-
   // when login navigate to dashboard
   const navigate = useNavigate();
   useEffect(() => {
