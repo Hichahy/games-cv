@@ -3,8 +3,8 @@ export interface IGames {
   name: string;
   image: string;
   description: string;
-  availability: boolean;
-  platform: string[];
+  // availability: boolean;
+  platform: string[] | string;
   type: string[];
   screens: string[];
   price: number;

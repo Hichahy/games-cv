@@ -1,24 +1,20 @@
-import './games.scss';
-import React, { useEffect } from 'react';
+import React from 'react';
 import Filters from '../filters';
 import { Container, Row, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { IGames } from '../../types/types';
 import { SpinnerLoading } from '../layout/spinnerLoading';
+import './games.scss';
 
 interface IProps {
   games: IGames[];
   phrase: string;
   filteredItems: IGames[];
-  loadGames: () => void;
+  loadingFetch: boolean;
 }
 
-const Games = ({ games, filteredItems, loadGames, phrase }: IProps) => {
-  useEffect(() => {
-    loadGames();
-  }, []);
-
-  if (games.length < 1) {
+const Games = ({ filteredItems, phrase, loadingFetch }: IProps) => {
+  if (loadingFetch) {
     return <SpinnerLoading />;
   }
 
