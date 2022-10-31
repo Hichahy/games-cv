@@ -119,15 +119,16 @@ const Register = ({ user }: IProps) => {
             <Form onSubmit={handleSubmit}>
               {errors !== ''
                 ? (
-                <Form.Label className='error-rent'>
+                <Form.Label data-testid='error-register-test' className='error-rent'>
                   <i className='bi bi-exclamation-triangle'></i>
-                  <span>{errors}</span>
+                  <span data-testid='error-register-span'>{errors}</span>
                 </Form.Label>
                   )
                 : null}
               <Form.Group>
                 <Form.Label>email:</Form.Label>
                 <Form.Control
+                  data-testid='input-register-test'
                   type='email'
                   name='email'
                   placeholder='Email'
@@ -138,6 +139,7 @@ const Register = ({ user }: IProps) => {
               <Form.Group>
                 <Form.Label>Hasło:</Form.Label>
                 <Form.Control
+                  data-testid='input-register-test-password'
                   type='password'
                   name='password'
                   placeholder='Hasło'
@@ -148,6 +150,7 @@ const Register = ({ user }: IProps) => {
               <Form.Group>
                 <Form.Label>Powtórz hasło:</Form.Label>
                 <Form.Control
+                  data-testid='input-register-test-password-confirm'
                   type='password'
                   name='confirmPassword'
                   placeholder='Powtórz hasło'
@@ -157,6 +160,7 @@ const Register = ({ user }: IProps) => {
               </Form.Group>
               <Form.Group className='mb-3'>
                 <Form.Check
+                  data-testid='input-register-test-checkbox'
                   type='checkbox'
                   label='Zgadzam się na wszystko'
                   onClick={() => setConfirmation(!confirmation)}
@@ -171,7 +175,7 @@ const Register = ({ user }: IProps) => {
             ? null
             : (
             <LinkContainer to='/login'>
-              <Nav.Link>Masz już konto?</Nav.Link>
+              <Nav.Link data-testid='input-register-redirect'>Masz już konto?</Nav.Link>
             </LinkContainer>
               )}
         </Col>

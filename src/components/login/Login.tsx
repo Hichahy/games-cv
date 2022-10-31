@@ -115,15 +115,16 @@ const Login = ({ user }: IProps) => {
             <Form onSubmit={hadnleSubmit}>
                  {errors !== ''
                    ? (
-                <Form.Label className='error-rent'>
+                <Form.Label className='error-rent' data-testid='error-login-test'>
                   <i className='bi bi-exclamation-triangle'></i>
-                  <span>{errors}</span>
+                  <span data-testid='error-span' >{errors}</span>
                 </Form.Label>
                      )
                    : null}
               <Form.Group>
                 <Form.Label>email:</Form.Label>
                 <Form.Control
+                  data-testid='input-login-test'
                   type='email'
                   name='email'
                   placeholder='Email'
@@ -134,6 +135,7 @@ const Login = ({ user }: IProps) => {
               <Form.Group>
                 <Form.Label>Hasło:</Form.Label>
                 <Form.Control
+                  data-testid='input-login-test-password'
                   type='password'
                   name='password'
                   placeholder='Hasło'
@@ -150,7 +152,7 @@ const Login = ({ user }: IProps) => {
             ? null
             : (
             <LinkContainer to='/register'>
-              <Nav.Link>Nie masz jeszcze konta?</Nav.Link>
+              <Nav.Link data-testid='input-login-redirect'>Nie masz jeszcze konta?</Nav.Link>
             </LinkContainer>
               )}
         </Col>

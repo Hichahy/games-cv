@@ -76,7 +76,7 @@ const Home = ({ mobileMode }: IProps) => {
           <span>{T.skills}</span>
         </ul>
       </section>
-      <Carousel className='home-carousel'>
+      <Carousel data-testid='carousel' className='home-carousel'>
         {homeCarouselItem.map((i) => (
           <Carousel.Item interval={3000} key={i.id}>
             <img src={mobileMode ? i.img2 : i.img1} alt={i.tittle} />

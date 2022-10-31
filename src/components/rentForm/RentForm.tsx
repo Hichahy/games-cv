@@ -122,7 +122,7 @@ const rentForm = ({
       {errors !== '' ?
         <Form.Label className='error-rent'>
           <i className='bi bi-exclamation-triangle'></i>
-          <span>{errors}</span>
+          <span data-testid='error-rent-form'>{errors}</span>
         </Form.Label>
         : null }
       <Row className='form-box'>
@@ -130,6 +130,7 @@ const rentForm = ({
           <Col className='input-box'>
             <Form.Label>Imię</Form.Label>
             <FormControl
+              data-testid='name-test'
               type='text'
               placeholder='Imię'
               name='name'
