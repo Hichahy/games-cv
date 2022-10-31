@@ -19,7 +19,7 @@ const Navigation = ({ user }: IProps) => {
       bg='dark'
       variant='dark'
     >
-      <Navbar.Brand className='brand' href='/'>
+      <Navbar.Brand className='brand' href='/home'>
         {T.companyName}
       </Navbar.Brand>
       <Navbar.Toggle aria-controls='responsive-navbar-nav' />

@@ -10,7 +10,7 @@ const Footer = () => {
     <footer>
       <Row className='footer-box'>
         <Col>
-          <h2>O nas 🦐</h2>
+          <h2>O nas 🌯</h2>
           <p>
             {T.aboutUs}{' '}
             <a

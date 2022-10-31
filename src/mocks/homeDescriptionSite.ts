@@ -38,6 +38,10 @@ export const homeDescriptionSite: HomeDescriptionSite[] = [
   },
   {
     id: 'homeDescriptionSite9',
+    desription: 'Unit testy z testing-library i jest-dom.'
+  },
+  {
+    id: 'homeDescriptionSite10',
     desription: 'W projekcie korzystałem z:'
   }
 ];
