@@ -10,5 +10,6 @@ export interface IStore {
      platform: string;
      filteredItems: Array<{}>;
      type: Array<{}>;
+     loadingFetch: boolean;
     }
 }

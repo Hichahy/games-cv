@@ -13,7 +13,6 @@ import { SpinnerLoading } from '../layout/spinnerLoading';
 
 interface IProps {
   games: IGames[];
-  loadGames: () => void;
   sendData: ({
     name,
     surname,
@@ -25,9 +24,10 @@ interface IProps {
     price
   }: IOrders) => void;
   mobileMode: boolean;
+  loadingFetch: boolean;
 }
 
-const rentCart = ({ games, loadGames, sendData, mobileMode }: IProps) => {
+const rentCart = ({ games, sendData, mobileMode, loadingFetch }: IProps) => {
   const [totalPrice, setTotalPrice] = useState({
     d2: '',
     rentDays: 0
@@ -59,12 +59,6 @@ const rentCart = ({ games, loadGames, sendData, mobileMode }: IProps) => {
     setUser(currentUser);
   });
 
-  useEffect(() => {
-    if (games.length < 1) {
-      loadGames()
-    }
-  }, []);
-
   // -25 % for useres
   useEffect(() => {
     const pricePromotion = game && ((75 / 100) * game.price * totalPrice.rentDays).toFixed(2);
@@ -81,7 +75,7 @@ const rentCart = ({ games, loadGames, sendData, mobileMode }: IProps) => {
     setRentComplete(true);
   };
 
-  if (games.length < 1) {
+  if (loadingFetch) {
     return <SpinnerLoading />;
   }
 

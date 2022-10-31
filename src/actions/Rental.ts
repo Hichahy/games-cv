@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable import/extensions */
 import {
   LOAD_GAME,
   SAVE_INFO_ORDERS,
@@ -19,14 +17,24 @@ import { auth } from '../firebase-config';
 
 const url :any = process.env.REACT_APP_FIREBASE_GET_DATA
 
-export const loadGames = () => async (dispatch: any) => {
+export const loadGames = () => async (dispatch: any, getState: any) => {
+  let loadingFetch = getState().rental.loadingFetch;
+  let data = null
   try {
-    const res = await axios.get(
+    await axios.get(
       url
+    ).then(
+      (res) => { data = res.data }
+    ).finally(() => {
+      loadingFetch = false
+    }
     );
     dispatch({
       type: LOAD_GAME,
-      payload: res.data
+      payload: {
+        data: data,
+        loadingFetch: loadingFetch
+      }
     });
   } catch (err) {
     console.log('err', err);

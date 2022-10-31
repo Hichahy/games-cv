@@ -5,7 +5,8 @@ import { loadGames } from '../../actions/Rental'
 
 const mapStateToProps = (state: IStore) => ({
   games: state.rental.games,
-  mobileMode: state.rental.mobileMode
+  mobileMode: state.rental.mobileMode,
+  loadingFetch: state.rental.loadingFetch
 })
 
 export default connect(mapStateToProps, { loadGames })(GameCart)

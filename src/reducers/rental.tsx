@@ -23,6 +23,7 @@ interface stateRental {
   platform: string;
   type: string;
   filteredItems: Array<{}>;
+  loadingFetch: boolean;
 }
 
 const initialState: stateRental = {
@@ -33,15 +34,17 @@ const initialState: stateRental = {
   sort: '',
   platform: '',
   type: '',
-  filteredItems: []
+  filteredItems: [],
+  loadingFetch: true
 }
 
 export const user = typeToReducer(
   {
     [LOAD_GAME]: (state: stateRental, action: any) => ({
       ...state,
-      games: action.payload,
-      filteredItems: action.payload
+      games: action.payload.data,
+      filteredItems: action.payload.data,
+      loadingFetch: action.payload.loadingFetch
     }),
 
     [MOBILE_MODE]: (state: stateRental, action: any) => ({

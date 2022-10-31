@@ -12,19 +12,12 @@ import { IconsPlatform } from '../layout/iconsPlatform';
 interface IProps {
   games: IGames[];
   mobileMode: boolean;
-  loadGames: () => void;
   user: null;
+  loadingFetch: boolean;
 }
 
-const GameCart = ({ games, mobileMode, loadGames, user }: IProps) => {
+const GameCart = ({ games, mobileMode, user, loadingFetch }: IProps) => {
   const [showScreen, setShowScreen] = useState(false);
-
-  // again fetch becouse if refresh state is empy
-  useEffect(() => {
-    if (games.length < 1) {
-      loadGames();
-    }
-  }, []);
 
   useEffect(() => {
     if (mobileMode) {
@@ -46,7 +39,7 @@ const GameCart = ({ games, mobileMode, loadGames, user }: IProps) => {
     setShowScreen((prev) => !prev);
   };
 
-  if (games.length < 1) {
+  if (loadingFetch) {
     return <SpinnerLoading />;
   }
 

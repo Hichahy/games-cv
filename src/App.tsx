@@ -3,7 +3,7 @@ import { Container, Row } from 'react-bootstrap';
 import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { IStore } from './types/IStore';
-import { toggleMobileMode } from './actions/Rental';
+import { toggleMobileMode, loadGames } from './actions/Rental';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase-config';
 
@@ -20,11 +20,16 @@ import PrivateRouter from './components/PrivateRoute';
 
 interface IProps {
   toggleMobileMode: (mobileMode: boolean) => void;
+  loadGames: () => void;
 }
 
-const App = ({ toggleMobileMode }: IProps) => {
+const App = ({ toggleMobileMode, loadGames }: IProps) => {
   const [width, setWidth] = useState(window.innerWidth);
   const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    loadGames();
+  }, []);
 
   onAuthStateChanged(auth, (currentUser: any) => {
     setUser(currentUser);
@@ -70,4 +75,4 @@ const App = ({ toggleMobileMode }: IProps) => {
   );
 };
 
-export default connect((state: IStore) => ({}), { toggleMobileMode })(App);
+export default connect((state: IStore) => ({}), { toggleMobileMode, loadGames })(App);
